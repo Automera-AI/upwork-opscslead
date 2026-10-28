@@ -1,736 +1,320 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Operations Command Centre — Portfolio Demo</title>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#20312f">
+<title>Workroom | Operations & Client Success</title>
 <style>
-:root{--navy:#101c2b;--navy2:#16263a;--text:#15253a;--muted:#718198;--stroke:#e5eaf1;--bg:#f5f7fb;--white:#fff;--teal:#087d79;--tealbg:#e5f4f0;--red:#ba523f;--redbg:#fff0e9;--gold:#a76a13;--goldbg:#fff4db;--blue:#3864b8;--bluebg:#eaf0ff;--shadow:0 7px 24px rgba(20,39,66,.045)}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:14px}button,input,select{font:inherit}button{cursor:pointer}.layout{display:flex;min-height:100vh}.sidebar{position:sticky;top:0;min-width:225px;width:225px;height:100vh;background:var(--navy);color:#fff;padding:28px 16px;display:flex;flex-direction:column}.brand{display:flex;align-items:center;gap:11px;padding:0 12px 34px}.brand-logo{width:35px;height:35px;border-radius:11px;background:linear-gradient(135deg,#27ada0,#78d7b9);color:#122232;display:grid;place-items:center;font-size:23px;font-weight:900}.brand-title{font-weight:750;font-size:17px;letter-spacing:-.5px}.brand-sub{font-size:10px;color:#91a9bd;letter-spacing:1.4px;font-weight:650;margin-top:4px}.nav-caption{font-size:10px;color:#7891a7;letter-spacing:1.6px;font-weight:800;margin:8px 13px 14px}.nav-btn{background:none;border:0;color:#98adbf;width:100%;padding:12px 13px;display:flex;align-items:center;gap:12px;text-align:left;border-radius:10px;margin-bottom:3px;font-weight:590}.nav-btn:hover{background:#1d3249;color:#fff}.nav-btn.active{background:#264254;color:#effffb}.nav-icon{font-size:17px;width:21px;text-align:center}.nav-count{margin-left:auto;color:#acc5d3;font-size:11px}.side-bottom{margin-top:auto;border-top:1px solid #2d3c4d;padding:20px 10px 0}.avatar{width:30px;height:30px;border-radius:9px;background:#2d4c56;display:grid;place-items:center;color:#9ce1d1;font-size:11px;font-weight:700}.side-bottom .who{display:flex;gap:9px;align-items:center}.side-bottom small{color:#91a9bd}.main{min-width:0;width:100%;max-width:1750px;margin:auto;padding:26px 35px 55px}.top{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:26px}.breadcrumbs{color:#8a98aa;font-size:12px}.heading{font-size:28px;font-weight:760;letter-spacing:-.9px;margin:9px 0 7px}.subtitle{color:#8490a1;line-height:1.45;margin:0}.top-right{display:flex;align-items:center;gap:12px}.demo-pill{font-size:11px;font-weight:730;letter-spacing:.8px;background:#fff6df;color:#9c671e;border:1px solid #f5e1ac;padding:9px 12px;border-radius:50px;white-space:nowrap}.date-pill{background:#fff;border:1px solid var(--stroke);padding:10px 13px;border-radius:9px;color:#54677c;font-weight:630;white-space:nowrap}.primary{background:#087a76;color:white;border:1px solid #087a76;padding:11px 15px;border-radius:9px;font-weight:700;box-shadow:0 3px 6px #087a7619}.primary:hover{background:#096c68}.secondary{background:#fff;color:#26465c;border:1px solid var(--stroke);padding:10px 13px;border-radius:9px;font-weight:650}.secondary:hover{background:#f4f7fa}.kpis{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:13px;margin-bottom:17px}.kpi{background:#fff;border:1px solid var(--stroke);border-radius:14px;padding:18px 17px 17px;box-shadow:var(--shadow);min-height:126px;position:relative}.kpi .kicker{font-size:11px;color:#8390a0;font-weight:700;margin-bottom:14px}.kpi .val{font-size:29px;font-weight:800;letter-spacing:-1px;line-height:1}.kpi .detail{margin-top:12px;font-size:11px;color:#8592a1}.kpi .symbol{position:absolute;right:15px;top:15px;width:27px;height:27px;border-radius:8px;display:grid;place-items:center;font-size:16px;background:#f2f5f9;color:#69819b}.kpi.warn .val{color:#b96a30}.kpi.risk .val{color:#b65e48}.kpi.good .val{color:#087e74}.main-grid{display:grid;grid-template-columns:minmax(0,1.72fr) minmax(320px,1fr);gap:16px}.panel{background:white;border:1px solid var(--stroke);border-radius:14px;box-shadow:var(--shadow);overflow:hidden}.panel-head{padding:19px 21px 14px;display:flex;justify-content:space-between;align-items:center;gap:8px}.panel-title{font-size:15px;font-weight:760;letter-spacing:-.25px}.panel-caption{font-size:11px;color:#8d9aaa;margin-top:4px}.panel-body{padding:0 21px 18px}.panel .link{border:0;background:none;color:var(--teal);font-size:12px;font-weight:750}.data-table{border-collapse:collapse;width:100%;table-layout:fixed}.data-table th{color:#8795a5;font-size:10px;text-transform:uppercase;letter-spacing:.65px;font-weight:750;text-align:left;border-top:1px solid #eef1f5;border-bottom:1px solid #eef1f5;padding:12px 12px}.data-table td{padding:14px 12px;border-bottom:1px solid #f0f2f5;color:#3c4b60;font-size:12px;vertical-align:middle}.data-table tbody tr:last-child td{border-bottom:0}.data-table tbody tr:hover{background:#f9fbfd}.strong{color:#22344b;font-weight:750}.minor{color:#8b98a7;font-size:11px;margin-top:5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.badge{display:inline-block;font-size:10px;font-weight:780;letter-spacing:.1px;padding:6px 9px;border-radius:7px;white-space:nowrap}.badge.good{color:#158270;background:#e4f5ee}.badge.risk{color:#b85e43;background:#fcebe4}.badge.medium{color:#ac7115;background:#fff3d8}.badge.blue{color:#436bb0;background:#eaf0fd}.badge.neutral{color:#697a8c;background:#eff2f6}.progress-wrap{width:100%;height:7px;background:#edf0f4;border-radius:12px;overflow:hidden}.progress-fill{height:100%;border-radius:12px;background:#2a978a}.progress-fill.risk{background:#d19a4a}.progress-meta{display:flex;justify-content:space-between;margin-bottom:7px;font-size:11px;color:#7a8998}.issues{display:flex;flex-direction:column;gap:9px}.issue{border:1px solid #e9edf2;background:#fff;border-radius:10px;padding:13px 14px;display:flex;gap:10px;align-items:flex-start;cursor:pointer}.issue:hover{border-color:#abd6d3;background:#fbfefd}.issue-dot{background:#fbefe6;color:#c57d3f;min-width:31px;height:31px;border-radius:9px;display:grid;place-items:center;font-weight:800}.issue .issue-name{font-weight:760;font-size:12px}.issue .issue-desc{font-size:12px;color:#657689;line-height:1.45;margin-top:5px}.issue .issue-foot{font-size:10px;color:#919dac;margin-top:9px}.issue .issue-arrow{margin-left:auto;font-size:17px;color:#afbac4}.bottom-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:16px}.bars{display:flex;flex-direction:column;gap:15px}.bar-line{display:flex;justify-content:space-between;margin-bottom:7px;color:#65768a;font-size:12px}.bar-line strong{color:#354c5b}.bar-rail{background:#eef2f5;height:9px;border-radius:10px;overflow:hidden}.bar-f{height:100%;background:#188e81;border-radius:10px}.bar-f.hot{background:#d5a15a}.stage{display:flex;align-items:center;gap:12px;border-bottom:1px solid #eff2f4;padding:11px 0}.stage:last-child{border-bottom:0}.stage .stage-icon{width:33px;height:33px;border-radius:10px;background:#e8f0fd;color:#5c7db2;display:grid;place-items:center;font-weight:800;flex-shrink:0}.stage .stage-name{font-size:12px;font-weight:750}.stage .stage-detail{font-size:11px;color:#8b97a6;margin-top:5px}.stage .stage-status{margin-left:auto;text-align:right}.stage-status small{font-size:11px;color:#8491a0}.event{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid #eff2f4}.event:last-child{border-bottom:0}.event-icon{width:30px;height:30px;border-radius:8px;background:#eef4f7;color:#477885;display:grid;place-items:center;font-size:14px;flex-shrink:0}.event .what{font-size:12px;font-weight:710;color:#344559}.event .when{font-size:11px;color:#8796a5;margin-top:4px}.page{display:none}.page.active{display:block}.table-area{padding:0 20px 15px}.filter-row{display:flex;gap:10px;align-items:center;padding:0 20px 17px}.search{border:1px solid #e3e9ef;padding:11px 12px;border-radius:9px;min-width:200px;width:45%;background:#fff;color:#253449}.select{border:1px solid #e3e9ef;padding:10px 12px;border-radius:9px;min-width:145px;background:#fff;color:#4b5c70}.long-table th{white-space:nowrap}.long-table td{font-size:12px}.section-note{background:#f2f8f7;border:1px solid #dceee9;color:#527976;border-radius:10px;padding:14px 17px;font-size:12px;line-height:1.7;margin-bottom:16px}.panel-full{margin-top:18px}.top-actions{display:flex;gap:8px;flex-wrap:wrap}.smaller{font-size:11px}.footer{margin-top:20px;font-size:11px;color:#9ca6b3}.overlay{display:none;position:fixed;inset:0;background:rgba(10,20,35,.48);z-index:100;align-items:center;justify-content:center;padding:15px}.overlay.visible{display:flex}.modal{background:#fff;width:min(650px,100%);max-height:88vh;overflow:auto;border-radius:18px;box-shadow:0 20px 70px rgba(9,25,43,.23);padding:27px}.modal h2{font-size:21px;letter-spacing:-.5px;margin:0 0 10px}.modal p{color:#677b8d;line-height:1.7}.modal .close{float:right;background:#f1f4f8;border:0;width:34px;height:34px;border-radius:8px;font-size:19px;color:#566a7a}.draft{background:#f7f9fb;border:1px solid #e7edf1;padding:19px;border-radius:10px;white-space:pre-wrap;line-height:1.7;font-size:13px;margin:17px 0;color:#31465b}.modal-footer{display:flex;justify-content:flex-end;gap:9px;align-items:center}.toast{display:none;position:fixed;bottom:22px;right:22px;padding:13px 18px;background:#1c3943;color:white;font-weight:650;border-radius:9px;box-shadow:0 8px 26px #172b2e3b;z-index:150}.toast.visible{display:block}.muted{color:#8292a2}.no-results{padding:34px;color:#8292a2;text-align:center}.label-line{font-size:11px;color:#8392a2;text-transform:uppercase;letter-spacing:1px;margin-top:18px}.info-block{background:#f6f8fa;border:1px solid #edf0f3;padding:15px;border-radius:9px;line-height:1.7}.onboarding-progress{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding:0 20px 20px}.micro-kpi{border:1px solid #edf0f4;border-radius:10px;padding:12px}.micro-kpi b{font-size:19px}.micro-kpi small{display:block;color:#8996a5;margin-top:5px}
-@media(max-width:1320px){.kpis{grid-template-columns:repeat(3,1fr)}.bottom-grid{grid-template-columns:1fr 1fr}.bottom-grid>.panel:last-child{grid-column:1/-1}}@media(max-width:1020px){.sidebar{width:70px;min-width:70px;padding:23px 9px}.brand-title,.brand-sub,.nav-caption,.nav-label,.nav-count,.side-bottom{display:none}.brand{padding:0 7px 28px}.nav-btn{justify-content:center;padding:12px 5px}.nav-icon{font-size:19px}.main{padding:24px 18px}.main-grid{grid-template-columns:1fr}.bottom-grid{grid-template-columns:1fr 1fr}.top-right{flex-wrap:wrap;justify-content:flex-end}}@media(max-width:660px){.sidebar{display:none}.main{padding:16px}.kpis{grid-template-columns:1fr 1fr}.bottom-grid{grid-template-columns:1fr}.bottom-grid>.panel:last-child{grid-column:auto}.heading{font-size:24px}.top{align-items:flex-start;flex-direction:column}.data-table td,.data-table th{padding:9px 5px}.table-area{overflow:auto}.data-table{min-width:650px}.filter-row{flex-wrap:wrap}.search{width:100%}}
-</style></head><body>
-<div class="layout"><aside class="sidebar"><div class="brand"><div class="brand-logo">◈</div><div><div class="brand-title">command<span style="color:#68d0ba">.</span></div><div class="brand-sub">OPERATIONS OS</div></div></div><div class="nav-caption">WORKSPACE</div>
-<button class="nav-btn active" data-page="overview"><span class="nav-icon">▦</span><span class="nav-label">Overview</span></button>
-<button class="nav-btn" data-page="delivery"><span class="nav-icon">▤</span><span class="nav-label">Project delivery</span><span class="nav-count" id="deliveryNav">8</span></button>
-<button class="nav-btn" data-page="success"><span class="nav-icon">♡</span><span class="nav-label">Client success</span></button>
-<button class="nav-btn" data-page="capacity"><span class="nav-icon">◷</span><span class="nav-label">Team capacity</span></button>
-<button class="nav-btn" data-page="updates"><span class="nav-icon">✉</span><span class="nav-label">Client updates</span></button>
-<div class="side-bottom"><div class="who"><div class="avatar">OS</div><div><div style="font-size:12px;font-weight:750">Sample Workspace</div><small>Candidate portfolio demo</small></div></div><div style="font-size:11px;color:#7893a9;line-height:1.6;margin-top:15px">All clients, tasks, people and metrics are fictional.</div></div></aside>
-<main class="main">
-<div class="top"><div><div class="breadcrumbs">Workspace / Agency operations / <span id="crumb">Overview</span></div><h1 class="heading" id="pageTitle">Operations command centre</h1><p class="subtitle" id="pageSub">One view of delivery commitments, client confidence and team bandwidth.</p></div><div class="top-right"><span class="demo-pill">● FICTIONAL DEMO DATA</span><span class="date-pill">◷ &nbsp; 28 Oct 2026</span><button class="primary" id="topUpdate">✦ &nbsp; Draft client update</button></div></div>
-<section class="page active" id="page-overview"><div class="kpis" id="kpis"></div><div class="main-grid"><div class="panel"><div class="panel-head"><div><div class="panel-title">Project portfolio</div><div class="panel-caption">Live delivery health across active workstreams</div></div><button class="link" data-goto="delivery">All projects →</button></div><div class="table-area" style="padding:0 10px 12px"><table class="data-table"><thead><tr><th style="width:35%">Project / Client</th><th style="width:17%">Owner</th><th style="width:21%">Progress</th><th style="width:15%">Due</th><th style="width:12%">Health</th></tr></thead><tbody id="overviewProjects"></tbody></table></div></div><div class="panel"><div class="panel-head"><div><div class="panel-title">Needs attention</div><div class="panel-caption">Escalations to resolve before they impact clients</div></div><button class="link" data-goto="success">View all →</button></div><div class="panel-body"><div class="issues" id="attention"></div></div></div></div>
-<div class="bottom-grid"><div class="panel"><div class="panel-head"><div><div class="panel-title">Team utilization</div><div class="panel-caption">Booked hours / available hours this week</div></div><button class="link" data-goto="capacity">Capacity →</button></div><div class="panel-body bars" id="capacityBars"></div></div><div class="panel"><div class="panel-head"><div><div class="panel-title">Client onboarding</div><div class="panel-caption">Milestones across incoming accounts</div></div><button class="link" data-goto="success">Milestones →</button></div><div class="panel-body" id="onboardingMini"></div></div><div class="panel"><div class="panel-head"><div><div class="panel-title">Next actions</div><div class="panel-caption">What I would prioritize in today's stand-up</div></div></div><div class="panel-body" id="nextActions"></div></div></div></section>
-<section class="page" id="page-delivery"><div class="section-note">Delivery workflow: one accountable owner per task, explicit next steps, and early identification of anything blocking the promised client deadline. Filters are live; source data is sample-only.</div><div class="panel"><div class="panel-head"><div><div class="panel-title">Projects & delivery commitments</div><div class="panel-caption" id="projectCount">Showing all projects</div></div><button class="link" id="clearFilters">Clear filters</button></div><div class="filter-row"><input id="projectSearch" class="search" placeholder="Search project, client, owner..."><select id="healthFilter" class="select"><option value="all">All health states</option><option value="At risk">At risk</option><option value="On track">On track</option><option value="Delivered">Delivered</option><option value="Not started">Not started</option></select></div><div class="table-area"><table class="data-table long-table"><thead><tr><th>Project</th><th>Owner</th><th>Delivery date</th><th>Progress</th><th>Health</th><th>Next action</th></tr></thead><tbody id="allProjects"></tbody></table></div></div><div class="panel panel-full"><div class="panel-head"><div><div class="panel-title">Priority task queue</div><div class="panel-caption">Overdue, blocked and near-term commitments</div></div></div><div class="table-area"><table class="data-table long-table"><thead><tr><th>Task</th><th>Project</th><th>Owner</th><th>Due</th><th>Status</th><th>Priority</th></tr></thead><tbody id="taskQueue"></tbody></table></div></div></section>
-<section class="page" id="page-success"><div class="section-note">A client-facing cadence should never depend on someone remembering to follow up. Each escalation has a named owner, next-update date, action plan and explicit status.</div><div class="panel"><div class="panel-head"><div><div class="panel-title">Client health & relationship plan</div><div class="panel-caption">Account health, meeting cadence and expansion signals</div></div></div><div class="table-area"><table class="data-table long-table"><thead><tr><th>Client</th><th>Health</th><th>Contact</th><th>Update cadence</th><th>Next touchpoint</th><th>Opportunity</th></tr></thead><tbody id="clientTable"></tbody></table></div></div><div class="panel panel-full"><div class="panel-head"><div><div class="panel-title">Escalation register</div><div class="panel-caption">Click an issue to view the recovery plan</div></div></div><div class="table-area"><table class="data-table long-table"><thead><tr><th>Client / Issue</th><th>Severity</th><th>Owner</th><th>Status</th><th>Next update</th></tr></thead><tbody id="issueTable"></tbody></table></div></div><div class="panel panel-full"><div class="panel-head"><div><div class="panel-title">Onboarding checklist</div><div class="panel-caption">From kickoff to first delivery and handoff</div></div></div><div class="table-area"><table class="data-table long-table"><thead><tr><th>Client</th><th>Milestone</th><th>Owner</th><th>Due</th><th>Status</th><th>Blocker / dependency</th></tr></thead><tbody id="onboardingTable"></tbody></table></div></div></section>
-<section class="page" id="page-capacity"><div class="section-note">Capacity planning should surface over-allocation before it becomes a missed deadline. The guardrail used here is 85% booked capacity: above that, work is reviewed and rebalanced rather than simply accepted.</div><div class="panel"><div class="panel-head"><div><div class="panel-title">Weekly allocation by owner</div><div class="panel-caption">Week of 26 Oct–1 Nov 2026 · Demo operating threshold: 85%</div></div></div><div class="onboarding-progress" id="capacityMetrics"></div><div class="panel-body bars" id="fullCapacityBars" style="padding:10px 23px 29px;gap:23px"></div></div><div class="panel panel-full"><div class="panel-head"><div><div class="panel-title">Workload decisions</div><div class="panel-caption">What I would do in the daily allocation review</div></div></div><div class="panel-body"><div class="info-block"><strong>Omar: 91% utilized (32 / 35h).</strong> Pause non-urgent requests and scope the next sprint before assigning new integration work. <br><strong>Samira: 85% utilized (34 / 40h).</strong> Protect a contingency buffer for the Atlas Fitness cutover. <br><strong>Zoe: 57% utilized (17 / 30h).</strong> Assign QA support only after confirming the skills and handoff needed; don't assume all remaining hours are interchangeable.</div></div></div></section>
-<section class="page" id="page-updates"><div class="section-note">Client communication example: one concise weekly update with progress, evidence, blockers, decisions required and the next milestone. Select a client to generate a demonstration draft, then copy it for review.</div><div class="panel"><div class="panel-head"><div><div class="panel-title">Client update composer</div><div class="panel-caption">Clear expectations; no surprise delays</div></div></div><div class="panel-body" style="padding-top:8px"><div class="label-line" style="margin:0 0 7px">Select project</div><div style="display:flex;gap:10px;flex-wrap:wrap"><select id="updateSelect" class="select" style="min-width:320px"></select><button class="primary" id="generateUpdate">Generate update preview</button></div><div id="updateDraft" class="draft" style="margin-top:20px">Choose a project and click “Generate update preview”.</div><div class="top-actions"><button class="secondary" id="copyUpdate">Copy update</button><span class="muted smaller">Sample copy only · Requires factual verification before sending</span></div></div></div><div class="panel panel-full"><div class="panel-head"><div><div class="panel-title">Communication principles</div></div></div><div class="panel-body"><div class="info-block">1. State the actual status, not vague reassurance. &nbsp;2. Identify the accountable owner. &nbsp;3. Make blockers visible alongside mitigation. &nbsp;4. Request specific decisions with dates. &nbsp;5. Commit to the next update—even when the issue is still open.</div></div></div></section>
-<div class="footer">Operations Command Centre · An independent portfolio sample for an Operations Manager & Client Success Lead application. All scenarios and figures are fictional, not examples of an employer's live data.</div>
-</main></div><div class="overlay" id="overlay"><div class="modal"><button class="close" id="closeModal">×</button><div id="modalContent"></div></div></div><div class="toast" id="toast">Copied</div>
+:root{
+  --ink:#1a2c2b; --ink-soft:#435452; --muted:#72827f; --nav:#20312f; --nav-text:#dae6e1;
+  --paper:#f6f8f7; --surface:#ffffff; --line:#dee5e1; --line-light:#e9eeeb;
+  --focus:#b0de90; --accent:#255b50; --accent-soft:#e5f1ec;
+  --danger:#b14e41; --danger-soft:#fcece7; --amber:#96651c; --amber-soft:#fbf2e1;
+  --violet:#635d87; --blue-soft:#edf1fb; --radius:10px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;color:var(--ink);background:var(--paper);font:14px/1.45 "Segoe UI Variable","Segoe UI",Arial,sans-serif;-webkit-font-smoothing:antialiased}
+button,input,select{font:inherit}
+button{cursor:pointer}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--focus);outline-offset:3px}
+::selection{background:#c7e7c1;color:#172e29}
+button:disabled{cursor:not-allowed;opacity:.48}
+button,select,input{transition:background-color .17s ease,border-color .17s ease,color .17s ease}
+a{color:inherit}
+.shell{display:grid;grid-template-columns:232px minmax(0,1fr);min-height:100vh}
+.sidebar{background:var(--nav);color:var(--nav-text);min-height:100vh;position:sticky;top:0;height:100vh;display:flex;flex-direction:column;padding:32px 20px 22px;z-index:5}
+.brand{display:flex;align-items:center;gap:12px;margin:0 0 61px 11px}
+.brand-symbol{display:grid;grid-template-columns:repeat(2,9px);grid-template-rows:repeat(2,9px);gap:3px;transform:rotate(-9deg)}
+.brand-symbol b{display:block;background:#b5dca2;border-radius:1px}.brand-symbol b:nth-child(2){background:#6f998c}.brand-symbol b:nth-child(3){background:#6f998c}.brand-symbol b:nth-child(4){background:transparent;border:1.5px solid #a0b9ab}
+.brand-name{font-size:21px;line-height:1;font-weight:760;letter-spacing:-.8px;color:white}.brand-name span{color:#b5dca2}
+.brand-desc{font-size:10px;font-weight:650;color:#92aaa2;letter-spacing:1.5px;margin-top:7px}
+.nav-group{font-size:10px;font-weight:700;letter-spacing:1.6px;color:#8da79f;margin:0 9px 13px;text-transform:uppercase}
+.nav{display:grid;gap:4px}
+.nav-btn{width:100%;background:none;border:0;color:#b3c8c1;display:flex;align-items:center;justify-content:space-between;text-align:left;padding:13px 12px 13px 16px;border-radius:7px;font-size:13px;font-weight:520;position:relative}
+.nav-btn:hover{background:#30463f;color:white}
+.nav-btn.active{background:#3a5148;color:white;font-weight:675}
+.nav-btn.active:before{content:"";width:3px;height:19px;background:#b5dca2;position:absolute;left:0;top:50%;transform:translateY(-50%);border-radius:2px}
+.nav-count{font-size:10px;color:#b6cbbf;background:#42584f;border-radius:4px;padding:2px 6px;font-variant-numeric:tabular-nums}
+.sidebar-foot{margin-top:auto;padding:18px 11px 0;border-top:1px solid #3b514b}
+.sidebar-foot .persona{display:flex;gap:10px;align-items:center}
+.persona-dot{display:grid;place-items:center;background:#486052;color:#f2fbf2;width:33px;height:33px;border-radius:7px;font-weight:750;font-size:11px}
+.persona strong{display:block;color:#f0f7f2;font-size:12px}.persona span{display:block;color:#a1b9af;font-size:11px;margin-top:3px}
+.sidebar-foot p{font-size:11px;color:#90aaa1;line-height:1.65;margin:16px 0 0}
+.workspace{min-width:0;max-width:1900px;width:100%;margin:auto}
+.toolbar{height:67px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 42px;background:#fbfcfb;gap:20px}
+.path{font-size:12px;color:var(--muted)}.path strong{font-weight:680;color:var(--ink)}
+.toolbar-actions{display:flex;align-items:center;gap:17px}.date{white-space:nowrap;font-size:12px;color:var(--ink-soft);font-variant-numeric:tabular-nums}
+.dot{width:6px;height:6px;display:inline-block;border-radius:50%;background:#75a36e;margin-right:7px;vertical-align:1px}
+.action{background:var(--accent);color:#fff;border:1px solid var(--accent);padding:10px 14px;border-radius:6px;font-size:12px;font-weight:690;white-space:nowrap}
+.action:hover{background:#143f37}
+.action .arrow{margin-left:14px;font-size:15px;line-height:0}
+.content{padding:39px 43px 16px;max-width:1580px;margin:auto}
+.page{display:none}.page.active{display:block;animation:page-in .2s ease-out}
+@keyframes page-in{from{opacity:.65;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+.page-head{display:flex;justify-content:space-between;align-items:flex-end;gap:18px;margin:0 0 30px}
+.page-head h1{font-weight:690;letter-spacing:-1.45px;font-size:32px;line-height:1.14;margin:0}
+.page-head p{color:#6c7c78;margin:9px 0 0;font-size:13px;line-height:1.5}
+.page-head .head-right{font-size:12px;color:var(--ink-soft);background:#e9efea;padding:9px 12px;border-radius:5px;white-space:nowrap}
+.section-head{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;padding:0 0 14px}
+.section-head h2{margin:0;font-size:17px;letter-spacing:-.35px;font-weight:710;line-height:1.2}
+.section-head p{font-size:12px;color:var(--muted);margin:5px 0 0}
+.text-link{border:0;background:transparent;color:var(--accent);font-size:12px;font-weight:700;padding:4px 0;white-space:nowrap}
+.text-link:hover{text-decoration:underline;text-underline-offset:3px}
+.metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-bottom:28px}
+.metric{padding:23px 25px 21px 0;position:relative;min-width:0}
+.metric:not(:first-child){padding-left:25px;border-left:1px solid var(--line)}
+.metric-value{font-size:34px;line-height:1;letter-spacing:-1.6px;font-weight:720;font-variant-numeric:tabular-nums}
+.metric-value.caution{color:var(--danger)}
+.metric-title{font-size:12px;font-weight:700;margin:10px 0 2px}
+.metric-desc{font-size:11px;color:var(--muted)}
+.overview-grid{display:grid;grid-template-columns:minmax(0,1.63fr) minmax(290px,.9fr);gap:20px;margin-bottom:30px}
+.surface{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);min-width:0}
+.spacious{padding:25px 26px 21px}
+.attention-list{display:grid;gap:0}
+.attention-item{display:grid;grid-template-columns:30px minmax(0,1fr) auto;align-items:start;gap:14px;width:100%;text-align:left;padding:16px 3px 17px;border:0;border-bottom:1px solid var(--line-light);background:none;color:inherit}
+.attention-item:last-child{border-bottom:0;padding-bottom:2px}
+.attention-item:hover .attention-title{text-decoration:underline;text-underline-offset:3px}
+.attention-marker{width:25px;height:25px;border-radius:5px;background:var(--danger-soft);display:grid;place-items:center;color:var(--danger);font-weight:800;font-size:12px}
+.attention-marker.medium{background:var(--amber-soft);color:var(--amber)}
+.attention-title{font-weight:690;font-size:13px;letter-spacing:-.1px}.attention-description{margin:4px 0 0;font-size:12px;color:var(--ink-soft)}
+.attention-meta{margin:7px 0 0;color:var(--muted);font-size:11px}.chevron{color:#a7b7ad;font-size:20px;padding-left:5px}
+.wk-panel{background:#243d37;border:1px solid #243d37;color:#edf5ee;position:relative;overflow:hidden}
+.wk-panel .section-head h2{color:#fff}.wk-panel .section-head p{color:#b6c9be}
+.wk-panel:after{content:"";position:absolute;right:-64px;top:-100px;width:190px;height:190px;border:1px solid #446056;border-radius:50%;box-shadow:0 0 0 36px #243d37,0 0 0 37px #3c564c;pointer-events:none}
+.wk-content{position:relative;z-index:1}
+.focus-row{display:flex;gap:16px;padding:12px 0;border-bottom:1px solid #456057;font-size:12px;align-items:flex-start}
+.focus-row:last-child{border:0}.focus-number{color:#a2d9b7;font-weight:750;font-size:12px;font-variant-numeric:tabular-nums;width:20px;flex:0 0 20px}
+.focus-title{color:#f1f6f3;font-weight:635}.focus-details{color:#aec5b9;font-size:11px;margin-top:4px}
+.block{margin-bottom:26px}.block-full{overflow:hidden}
+.block-heading{padding:22px 24px 14px}.block-heading.no-padding-bottom{padding-bottom:0}
+.table-scroll{width:100%;overflow:auto}
+table{width:100%;border-collapse:collapse;text-align:left;font-size:12px}
+th{text-transform:uppercase;font-size:10px;letter-spacing:.9px;font-weight:750;color:#778a82;background:#f8faf8;white-space:nowrap;padding:13px 18px;border-bottom:1px solid var(--line)}
+td{padding:14px 18px;border-bottom:1px solid var(--line-light);vertical-align:middle;color:var(--ink-soft)}
+tbody tr:last-child td{border-bottom:0}
+tbody tr:hover{background:#f9fbfa}
+.col-primary{color:var(--ink);font-weight:690;font-size:12px;letter-spacing:-.05px}.subline{color:var(--muted);font-size:11px;margin-top:4px}
+.name-cell{min-width:183px}.owner{white-space:nowrap}
+.status{display:inline-block;border-radius:4px;padding:5px 8px;font-size:10px;line-height:1;white-space:nowrap;font-weight:750}
+.status.risk{background:var(--danger-soft);color:var(--danger)}.status.good{background:var(--accent-soft);color:#27604d}.status.warn{background:var(--amber-soft);color:var(--amber)}.status.neutral{background:#edf0ef;color:#657470}.status.info{background:var(--blue-soft);color:#405d91}
+.progress-line{display:flex;align-items:center;gap:10px;min-width:105px}.progress-rail{height:5px;border-radius:50px;background:#e8eeeb;flex:1;overflow:hidden;min-width:65px}
+.progress-fill{height:100%;background:#448978;border-radius:40px}.progress-fill.risk{background:#d29b5c}
+.progress-line b{font-size:11px;color:#4b625b;min-width:30px;text-align:right;font-weight:650;font-variant-numeric:tabular-nums}
+.mini-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:24px}
+.capacity-mini,.touch-list{padding:6px 23px 20px}
+.capacity-mini .cap-row{margin-top:15px}
+.cap-heading{display:flex;align-items:center;justify-content:space-between;font-size:12px;gap:12px;margin-bottom:8px}
+.cap-heading strong{font-weight:690}.cap-heading span{color:var(--muted);font-variant-numeric:tabular-nums}
+.load-rail{height:6px;background:#e8efea;border-radius:20px;overflow:hidden}
+.load-fill{height:100%;border-radius:20px;background:#4d9781}.load-fill.hot{background:#c58755}
+.touch-item{display:flex;align-items:flex-start;justify-content:space-between;gap:15px;padding:12px 0;border-bottom:1px solid var(--line-light)}.touch-item:last-child{border:0}
+.touch-title{font-weight:690;color:var(--ink);font-size:12px}.touch-sub{font-size:11px;color:var(--muted);margin-top:3px}
+.touch-date{white-space:nowrap;color:var(--ink-soft);font-size:11px;font-weight:680}
+.callout{background:#e9eeeb;border:1px solid #dce5df;color:#52625c;border-radius:7px;padding:14px 17px;font-size:12px;line-height:1.6;margin:0 0 23px}
+.callout strong{color:var(--ink)}
+.filterbar{display:flex;align-items:center;gap:11px;flex-wrap:wrap;padding:0 24px 20px}
+.field{height:38px;border:1px solid #d9e3dd;background:#fff;color:var(--ink);border-radius:6px;padding:0 12px;min-width:150px}
+.search{flex:1 1 220px;max-width:380px}
+.field:hover{border-color:#a8b9ae}
+.quiet-btn{border:1px solid var(--line);background:#fff;border-radius:6px;color:var(--ink);padding:9px 12px;font-weight:680;font-size:12px}
+.quiet-btn:hover{background:#eef3ef}
+.count-label{font-size:11px;color:var(--muted);margin-left:auto}
+.empty{padding:33px;text-align:center;color:var(--muted);font-size:12px}
+.issue-action{border:0;background:transparent;text-align:left;display:block;color:var(--ink);font-weight:650;padding:0}.issue-action:hover{text-decoration:underline;text-underline-offset:3px}
+.issue-list{display:grid;gap:0}.issue-list .attention-item{padding:15px 23px;grid-template-columns:32px minmax(0,1fr) auto}.issue-list .attention-item:last-child{padding-bottom:18px}
+.issue-topline{display:flex;justify-content:space-between;align-items:center;gap:15px;padding:20px 24px 4px}
+.issue-count{font-size:12px;color:var(--muted)}
+.two-col{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(300px,1fr);gap:20px}
+.onboarding-items{padding:0 23px 16px}.onboard-row{display:grid;grid-template-columns:1fr auto;gap:12px;padding:15px 0;border-bottom:1px solid var(--line-light)}.onboard-row:last-child{border:0}
+.capacity-table td{padding-top:16px;padding-bottom:16px}.capacity-name{display:flex;align-items:center;gap:12px}
+.initial{width:31px;height:31px;display:grid;place-items:center;background:#e7eee9;border-radius:6px;font-weight:740;color:#356556;font-size:11px}
+.capacity-track{min-width:185px;max-width:310px}.capacity-track .load-rail{height:7px}
+.capacity-signal{font-weight:680}
+.capacity-note{display:flex;gap:11px;align-items:flex-start;background:#eff3f0;border-top:1px solid var(--line);padding:18px 24px;color:#5c6d65;font-size:12px}
+.capacity-note b{color:#496c55}
+.update-layout{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(280px,.75fr);gap:20px}
+.editor-bar{padding:21px 23px;border-bottom:1px solid var(--line);display:flex;gap:12px;align-items:end;justify-content:space-between;flex-wrap:wrap}
+.field-block{display:grid;gap:7px;flex:1;max-width:325px}.field-block label{font-size:11px;font-weight:700;color:var(--ink-soft)}
+.letter{background:#fff;white-space:pre-wrap;word-break:break-word;font-family:"Segoe UI Variable","Segoe UI",Arial,sans-serif;font-size:12px;line-height:1.9;color:#334641;padding:25px 29px;min-height:450px;margin:0}
+.editor-bottom{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;border-top:1px solid var(--line);padding:16px 23px}
+.small-note{color:var(--muted);font-size:11px}
+.principles{padding:24px}.principles h2{font-size:17px;margin:0 0 16px;letter-spacing:-.3px}.principle{padding:16px 0;border-bottom:1px solid var(--line-light)}.principle:last-child{border:0}
+.principle b{font-size:12px}.principle p{font-size:12px;color:var(--muted);margin:5px 0 0;line-height:1.65}
+.footer{padding:10px 43px 28px;margin:0 auto;max-width:1580px;color:#899a92;font-size:11px;line-height:1.6}
+.footer strong{color:#6c8075}
+dialog{border:none;border-radius:12px;width:min(560px,calc(100vw - 30px));max-height:85vh;overflow:auto;padding:0;color:var(--ink);box-shadow:0 25px 75px rgba(8,25,19,.21)}
+dialog::backdrop{background:rgba(20,34,30,.58)}
+.dialog-top{padding:26px 27px 19px;display:flex;justify-content:space-between;gap:15px;border-bottom:1px solid var(--line)}
+.dialog-top h2{font-size:21px;margin:6px 0 0;letter-spacing:-.7px}.dialog-body{padding:24px 27px 11px}.dialog-body .line{margin:0 0 21px}
+.dialog-body .line b{display:block;color:#72867b;font-size:10px;font-weight:750;letter-spacing:.7px;text-transform:uppercase;margin-bottom:6px}
+.dialog-body .line p{margin:0;font-size:13px;color:var(--ink);line-height:1.6}
+.dialog-footer{padding:17px 27px;border-top:1px solid var(--line);display:flex;justify-content:flex-end;gap:10px;align-items:center}
+.close-dialog{background:#edf2ee;border:0;border-radius:5px;width:31px;height:31px;font-size:21px;color:var(--ink-soft)}
+.toast{position:fixed;bottom:28px;right:30px;background:#1d3e34;color:#fff;padding:12px 16px;border-radius:8px;box-shadow:0 12px 30px rgba(0,0,0,.2);font-size:12px;opacity:0;transform:translateY(8px);transition:all .2s;pointer-events:none;z-index:30}
+.toast.visible{opacity:1;transform:translateY(0)}
+@media(max-width:1260px){.content{padding:34px 27px 13px}.toolbar{padding:0 27px}.footer{padding-left:27px;padding-right:27px}.overview-grid{grid-template-columns:1.3fr 1fr}.mini-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:1050px){.shell{grid-template-columns:195px minmax(0,1fr)}.sidebar{padding-left:12px;padding-right:12px}.brand{margin-left:8px}.metrics{grid-template-columns:repeat(2,1fr)}.metric:nth-child(3){border-left:0;border-top:1px solid var(--line);padding-left:0}.metric:nth-child(4){border-top:1px solid var(--line)}.overview-grid,.mini-grid,.two-col,.update-layout{grid-template-columns:1fr}}
+@media(max-width:740px){.shell{display:block}.sidebar{position:sticky;top:0;height:auto;min-height:0;padding:11px 16px 0;display:block}.brand{margin:0 0 10px 1px;gap:8px}.brand-symbol{transform:scale(.78) rotate(-9deg)}.brand-name{font-size:18px}.brand-desc,.nav-group,.sidebar-foot{display:none}.nav{display:flex;gap:5px;overflow-x:auto;padding-bottom:9px;scrollbar-width:none}.nav::-webkit-scrollbar{display:none}.nav-btn{white-space:nowrap;width:auto;padding:9px 11px;font-size:12px}.nav-btn.active:before{display:none}.nav-count{display:none}.toolbar{height:55px;padding:0 17px}.path{font-size:11px}.toolbar-actions{gap:8px}.date{display:none}.action{font-size:11px;padding:9px 10px}.action .arrow{margin-left:5px}.content{padding:26px 17px 0}.page-head{margin-bottom:23px;align-items:flex-start}.page-head h1{font-size:28px}.page-head .head-right{display:none}.metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.metric{padding:19px 5px 19px 0}.metric:not(:first-child){padding-left:14px}.metric:nth-child(3){padding-left:0}.metric-value{font-size:31px}.metric-title{font-size:11px}.metric-desc{font-size:10px}.spacious{padding:21px 19px}.block-heading{padding:20px 18px 12px}.mini-grid,.overview-grid{gap:15px}.attention-item{grid-template-columns:25px minmax(0,1fr) 14px;gap:10px}.attention-description{line-height:1.4}.filterbar{padding:0 18px 16px}.search{max-width:none}.count-label{width:100%;margin:0}.issue-list .attention-item{padding:15px 17px;grid-template-columns:24px 1fr 12px}.issue-topline{padding:18px 18px 5px}.footer{padding:5px 17px 24px}table{min-width:610px}.capacity-table{min-width:560px}.touch-list{padding-left:18px;padding-right:18px}.capacity-mini{padding-left:18px;padding-right:18px}.letter{padding:20px 19px}.principles{padding:20px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<!--
+THESIS: An agency operator needs an intervention queue, not six ornamental statistic cards.
+OWN-WORLD: Deep pine navigation, ink-on-cool-paper, dense white work surfaces, precise color-coded states, compact numerals.
+STORY: Scan client risk, assign the next action, check capacity, draft a factual update.
+FIRST VIEWPORT: Fixed working navigation; slim utility bar; contextual title; four unboxed signals; prioritized intervention list alongside an action register.
+FORM: Task-first operational workspace rather than a generic SaaS marketing page. Motion communicates state transitions only.
+FINISH: Verified interactions, desktop and mobile screenshots, truthful demo labels and documented design choices.
+-->
+<div class="shell">
+<aside class="sidebar" aria-label="Workspace navigation">
+  <div class="brand"><div class="brand-symbol" aria-hidden="true"><b></b><b></b><b></b><b></b></div><div><div class="brand-name">workroom<span>.</span></div><div class="brand-desc">OPERATIONS DESK</div></div></div>
+  <div class="nav-group">Workspace</div>
+  <nav class="nav" aria-label="Primary navigation">
+    <button class="nav-btn active" data-page="overview" aria-current="page">Overview</button>
+    <button class="nav-btn" data-page="delivery">Project delivery <span class="nav-count">8</span></button>
+    <button class="nav-btn" data-page="success">Client success</button>
+    <button class="nav-btn" data-page="capacity">Team capacity</button>
+    <button class="nav-btn" data-page="updates">Client updates</button>
+  </nav>
+  <div class="sidebar-foot"><div class="persona"><div class="persona-dot">DEMO</div><div><strong>Agency workspace</strong><span>Portfolio presentation</span></div></div><p>Fictional client scenarios, people and metrics. Built to demonstrate an operating approach, not a live system.</p></div>
+</aside>
+<div class="workspace">
+<header class="toolbar"><div class="path">Workroom <span style="color:#a8b5af">/</span> <strong id="breadcrumb">Overview</strong></div><div class="toolbar-actions"><span class="date"><i class="dot"></i>28 October 2026 &nbsp;·&nbsp; Sample data</span><button class="action" id="topUpdate">Draft client update <span class="arrow" aria-hidden="true">↗</span></button></div></header>
+<main class="content">
+<section class="page active" id="page-overview" aria-labelledby="head-overview">
+ <div class="page-head"><div><h1 id="head-overview">Operations overview</h1><p>Everything that needs attention across the client portfolio, in one place.</p></div><div class="head-right">Wednesday, 28 October</div></div>
+ <div class="metrics" id="overviewMetrics"></div>
+ <div class="overview-grid">
+  <section class="surface spacious"><div class="section-head"><div><h2>Needs your attention</h2><p>Unresolved issues with an accountable next step.</p></div><button class="text-link" data-goto="success">All escalations ↗</button></div><div id="overviewIssues" class="attention-list"></div></section>
+  <section class="surface spacious wk-panel"><div class="wk-content"><div class="section-head"><div><h2>Today's operating priorities</h2><p>Recommended actions for the morning stand-up.</p></div></div><div id="todayFocus"></div></div></section>
+ </div>
+ <section class="surface block block-full"><div class="section-head block-heading"><div><h2>Project portfolio</h2><p>Workstream delivery, ownership and commitments.</p></div><button class="text-link" data-goto="delivery">View all projects ↗</button></div><div class="table-scroll"><table><thead><tr><th>Client / Workstream</th><th>Owner</th><th>Due</th><th>Progress</th><th>Health</th></tr></thead><tbody id="portfolioRows"></tbody></table></div></section>
+ <div class="mini-grid">
+  <section class="surface"><div class="section-head block-heading"><div><h2>Capacity at a glance</h2><p>Booked hours against this week's availability.</p></div><button class="text-link" data-goto="capacity">Review team ↗</button></div><div class="capacity-mini" id="capacityPreview"></div></section>
+  <section class="surface"><div class="section-head block-heading"><div><h2>Upcoming client touchpoints</h2><p>Relationships with a scheduled next action.</p></div><button class="text-link" data-goto="success">View clients ↗</button></div><div class="touch-list" id="touchPreview"></div></section>
+ </div>
+</section>
+<section class="page" id="page-delivery" aria-labelledby="head-delivery">
+ <div class="page-head"><div><h1 id="head-delivery">Project delivery</h1><p>Own the next milestone. Surface blockers before they become client problems.</p></div><div class="head-right">8 workstreams tracked</div></div>
+ <div class="callout"><strong>Operating principle:</strong> Every project has one accountable owner, a committed delivery date and a clearly documented next action. Review at-risk workstreams first.</div>
+ <section class="surface block block-full"><div class="section-head block-heading"><div><h2>Delivery register</h2><p>Search by client, project or accountable owner.</p></div></div>
+ <div class="filterbar"><input class="field search" id="projectSearch" type="search" aria-label="Search projects" placeholder="Search projects or clients"><select class="field" id="healthFilter" aria-label="Filter by project health"><option value="all">All health states</option><option value="At risk">At risk</option><option value="On track">On track</option><option value="Delivered">Delivered</option><option value="Not started">Not started</option></select><button class="quiet-btn" id="resetFilters">Clear filters</button><span id="projectCount" class="count-label"></span></div>
+ <div class="table-scroll"><table><thead><tr><th>Client / Workstream</th><th>Owner</th><th>Target</th><th>Progress</th><th>Health</th><th>Next action</th></tr></thead><tbody id="projectRows"></tbody></table></div></section>
+ <section class="surface block block-full"><div class="section-head block-heading"><div><h2>Open task queue</h2><p>Blocked tasks first, followed by nearest delivery dates.</p></div></div><div class="table-scroll"><table><thead><tr><th>Task / Client</th><th>Owner</th><th>Due</th><th>Priority</th><th>Status</th></tr></thead><tbody id="taskRows"></tbody></table></div></section>
+</section>
+<section class="page" id="page-success" aria-labelledby="head-success">
+ <div class="page-head"><div><h1 id="head-success">Client success</h1><p>Make client confidence an operating system, not a last-minute recovery exercise.</p></div><div class="head-right">8 accounts monitored</div></div>
+ <div class="callout"><strong>Escalation standard:</strong> Name the owner, explain the impact, give a recovery action and commit to the next update even while the issue remains open.</div>
+ <section class="surface block"><div class="issue-topline"><div class="section-head"><div><h2>Escalation register</h2><p>Click an issue to review impact, ownership and the recovery plan.</p></div></div><span class="issue-count" id="openIssueCount"></span></div><div class="issue-list" id="issuesRegister"></div></section>
+ <div class="two-col">
+ <section class="surface block block-full"><div class="section-head block-heading"><div><h2>Account health</h2><p>Relationship health and planned communication cadence.</p></div></div><div class="table-scroll"><table><thead><tr><th>Client</th><th>Health</th><th>Next touch</th><th>Cadence</th></tr></thead><tbody id="clientsRows"></tbody></table></div></section>
+ <section class="surface block"><div class="section-head block-heading"><div><h2>Onboarding milestones</h2><p>From first kickoff to confident handover.</p></div></div><div id="onboardingRows" class="onboarding-items"></div></section>
+ </div>
+</section>
+<section class="page" id="page-capacity" aria-labelledby="head-capacity">
+ <div class="page-head"><div><h1 id="head-capacity">Team capacity</h1><p>Protect delivery quality by planning the work, not just assigning more of it.</p></div><div class="head-right">6 delivery contributors</div></div>
+ <div class="callout"><strong>Capacity guardrail:</strong> Review assignments above 85% utilization before accepting additional commitments. Utilization is allocated hours divided by available hours, not a measure of individual performance.</div>
+ <section class="surface block block-full"><div class="section-head block-heading"><div><h2>Weekly workload</h2><p>Sample booked hours, available hours and active accounts.</p></div></div><div class="table-scroll"><table class="capacity-table"><thead><tr><th>Team member</th><th>Active accounts</th><th>Booked / available</th><th>Utilization</th><th>Workload signal</th></tr></thead><tbody id="capacityRows"></tbody></table></div><div class="capacity-note"><b>85% threshold</b><span>Above the threshold: rebalance deadlines or redistribute work. Below it: confirm skill fit and handover requirements before assigning.</span></div></section>
+</section>
+<section class="page" id="page-updates" aria-labelledby="head-updates">
+ <div class="page-head"><div><h1 id="head-updates">Client updates</h1><p>Turn delivery signals into clear, factual communication without starting from scratch.</p></div><div class="head-right">Draft only · not sent</div></div>
+ <div class="update-layout">
+  <section class="surface block"><div class="editor-bar"><div class="field-block"><label for="updateSelect">Select a client project</label><select class="field" id="updateSelect"></select></div><button class="action" id="generateUpdate">Generate sample draft <span class="arrow" aria-hidden="true">↗</span></button></div><div class="letter" id="updateDraft" role="status" aria-live="polite"></div><div class="editor-bottom"><button class="quiet-btn" id="copyUpdate">Copy this draft</button><span class="small-note">Review details before sharing. Nothing is sent automatically.</span></div></section>
+  <section class="surface block principles"><h2>What a good client update covers</h2><div class="principle"><b>01 &nbsp; Where the work stands</b><p>Progress against a defined milestone, without vague assurances.</p></div><div class="principle"><b>02 &nbsp; What is blocking delivery</b><p>Name the dependency, the mitigation and its owner.</p></div><div class="principle"><b>03 &nbsp; What the client needs to decide</b><p>Make the request specific, actionable and time-bound.</p></div><div class="principle"><b>04 &nbsp; When they will hear from us</b><p>Commit to the next update even if there is no resolution yet.</p></div></section>
+ </div>
+</section>
+</main>
+<footer class="footer"><strong>Workroom portfolio demo.</strong> All client names, scenarios, tasks, metrics and messages shown are illustrative. This is a standalone HTML presentation, not connected to real client systems.</footer>
+</div>
+</div>
+<dialog id="issueDialog" aria-labelledby="issueDialogTitle"><div class="dialog-top"><div><div id="issueDialogTag" class="small-note"></div><h2 id="issueDialogTitle"></h2></div><button class="close-dialog" id="closeDialog" aria-label="Close issue details">×</button></div><div class="dialog-body" id="issueDialogBody"></div><div class="dialog-footer"><button class="quiet-btn" id="dismissDialog">Close</button><button class="action" id="reviewIssue">Mark reviewed in demo</button></div></dialog>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
 <script>
-const demo={
-  "as_of": "2026-10-28",
-  "projects": [
-    {
-      "id": "P-101",
-      "client": "Atlas Fitness",
-      "project": "CRM migration & rollout",
-      "owner": "Samira",
-      "stage": "In progress",
-      "health": "At risk",
-      "progress": 74,
-      "due": "2026-11-03",
-      "next": "Confirm data-mapping sign-off",
-      "service": "CRM & RevOps",
-      "priority": "High"
-    },
-    {
-      "id": "P-102",
-      "client": "Northstar Studio",
-      "project": "Website relaunch",
-      "owner": "Daniel",
-      "stage": "In progress",
-      "health": "On track",
-      "progress": 83,
-      "due": "2026-10-31",
-      "next": "Complete final QA and UAT",
-      "service": "Web delivery",
-      "priority": "High"
-    },
-    {
-      "id": "P-103",
-      "client": "Lumen Health",
-      "project": "Onboarding automation",
-      "owner": "Leah",
-      "stage": "In progress",
-      "health": "On track",
-      "progress": 62,
-      "due": "2026-11-06",
-      "next": "Test calendar integration",
-      "service": "Automation",
-      "priority": "Medium"
-    },
-    {
-      "id": "P-104",
-      "client": "Harbor & Co",
-      "project": "Q4 content retainer",
-      "owner": "Maya",
-      "stage": "In progress",
-      "health": "On track",
-      "progress": 68,
-      "due": "2026-11-02",
-      "next": "Align campaign creative brief",
-      "service": "Client services",
-      "priority": "Medium"
-    },
-    {
-      "id": "P-105",
-      "client": "Verde Commerce",
-      "project": "Sales pipeline implementation",
-      "owner": "Omar",
-      "stage": "In progress",
-      "health": "At risk",
-      "progress": 48,
-      "due": "2026-11-09",
-      "next": "Escalate outstanding approvals",
-      "service": "CRM & RevOps",
-      "priority": "High"
-    },
-    {
-      "id": "P-106",
-      "client": "Brightline Advisory",
-      "project": "Support desk launch",
-      "owner": "Zoe",
-      "stage": "In progress",
-      "health": "On track",
-      "progress": 57,
-      "due": "2026-11-10",
-      "next": "Review initial ticket taxonomy",
-      "service": "Service ops",
-      "priority": "Medium"
-    },
-    {
-      "id": "P-107",
-      "client": "Willow Home",
-      "project": "Brand refresh",
-      "owner": "Daniel",
-      "stage": "Completed",
-      "health": "Delivered",
-      "progress": 100,
-      "due": "2026-10-24",
-      "next": "Request testimonial",
-      "service": "Brand",
-      "priority": "Low"
-    },
-    {
-      "id": "P-108",
-      "client": "Summit Legal",
-      "project": "Client intake workflow",
-      "owner": "Leah",
-      "stage": "Planned",
-      "health": "Not started",
-      "progress": 0,
-      "due": "2026-11-17",
-      "next": "Schedule kickoff & asset intake",
-      "service": "Automation",
-      "priority": "Medium"
-    }
-  ],
-  "people": [
-    {
-      "name": "Samira",
-      "role": "Delivery / Ops",
-      "capacity": 40,
-      "booked": 34,
-      "active": 3
-    },
-    {
-      "name": "Daniel",
-      "role": "Web & Creative",
-      "capacity": 35,
-      "booked": 29,
-      "active": 2
-    },
-    {
-      "name": "Leah",
-      "role": "Automation Lead",
-      "capacity": 35,
-      "booked": 28,
-      "active": 2
-    },
-    {
-      "name": "Maya",
-      "role": "Client Success",
-      "capacity": 35,
-      "booked": 25,
-      "active": 3
-    },
-    {
-      "name": "Omar",
-      "role": "CRM Integrations",
-      "capacity": 35,
-      "booked": 32,
-      "active": 2
-    },
-    {
-      "name": "Zoe",
-      "role": "QA / Support Ops",
-      "capacity": 30,
-      "booked": 17,
-      "active": 2
-    }
-  ],
-  "issues": [
-    {
-      "id": "E-201",
-      "client": "Atlas Fitness",
-      "issue": "Data-mapping discrepancy before CRM cutover",
-      "severity": "High",
-      "status": "Open",
-      "owner": "Samira",
-      "opened": "2026-10-26",
-      "next_update": "2026-10-28",
-      "action": "Validate 240 sample records; request client sign-off",
-      "impact": "Migration cutover at risk"
-    },
-    {
-      "id": "E-202",
-      "client": "Verde Commerce",
-      "issue": "Two stakeholder approvals outstanding",
-      "severity": "High",
-      "status": "Open",
-      "owner": "Omar",
-      "opened": "2026-10-27",
-      "next_update": "2026-10-29",
-      "action": "Send decision brief with revised milestone options",
-      "impact": "Blocks integration sprint"
-    },
-    {
-      "id": "E-203",
-      "client": "Harbor & Co",
-      "issue": "Campaign brief needs scope clarification",
-      "severity": "Medium",
-      "status": "In progress",
-      "owner": "Maya",
-      "opened": "2026-10-27",
-      "next_update": "2026-10-28",
-      "action": "Host 15-min alignment call; issue revised brief",
-      "impact": "Potential rework"
-    },
-    {
-      "id": "E-204",
-      "client": "Northstar Studio",
-      "issue": "Homepage messaging revision",
-      "severity": "Low",
-      "status": "Resolved",
-      "owner": "Daniel",
-      "opened": "2026-10-22",
-      "next_update": "",
-      "action": "Approved revision delivered",
-      "impact": "No active impact"
-    },
-    {
-      "id": "E-205",
-      "client": "Lumen Health",
-      "issue": "Calendar integration verification",
-      "severity": "Medium",
-      "status": "Resolved",
-      "owner": "Leah",
-      "opened": "2026-10-23",
-      "next_update": "",
-      "action": "Regression tests passed",
-      "impact": "No active impact"
-    },
-    {
-      "id": "E-206",
-      "client": "Brightline Advisory",
-      "issue": "Knowledge base taxonomy feedback",
-      "severity": "Low",
-      "status": "Resolved",
-      "owner": "Zoe",
-      "opened": "2026-10-23",
-      "next_update": "",
-      "action": "Revised taxonomy accepted",
-      "impact": "No active impact"
-    }
-  ],
-  "clients": [
-    {
-      "client": "Atlas Fitness",
-      "contact": "Operations Director",
-      "health": "Amber",
-      "cadence": "Twice weekly",
-      "next_touch": "2026-10-28",
-      "renewal": "2027-01-31",
-      "opportunity": "Phase-two reporting automation"
-    },
-    {
-      "client": "Northstar Studio",
-      "contact": "Founder",
-      "health": "Green",
-      "cadence": "Weekly",
-      "next_touch": "2026-10-30",
-      "renewal": "2026-12-31",
-      "opportunity": "Post-launch care plan"
-    },
-    {
-      "client": "Lumen Health",
-      "contact": "Practice Manager",
-      "health": "Green",
-      "cadence": "Weekly",
-      "next_touch": "2026-10-29",
-      "renewal": "2027-02-15",
-      "opportunity": "Additional reminder flows"
-    },
-    {
-      "client": "Harbor & Co",
-      "contact": "Marketing Director",
-      "health": "Amber",
-      "cadence": "Weekly",
-      "next_touch": "2026-10-28",
-      "renewal": "2026-12-15",
-      "opportunity": "Content analytics retainer"
-    },
-    {
-      "client": "Verde Commerce",
-      "contact": "COO",
-      "health": "Amber",
-      "cadence": "Twice weekly",
-      "next_touch": "2026-10-29",
-      "renewal": "2027-01-20",
-      "opportunity": "Revenue reporting dashboards"
-    },
-    {
-      "client": "Brightline Advisory",
-      "contact": "Head of Services",
-      "health": "Green",
-      "cadence": "Weekly",
-      "next_touch": "2026-10-30",
-      "renewal": "2027-02-28",
-      "opportunity": "Helpdesk macros & automation"
-    },
-    {
-      "client": "Willow Home",
-      "contact": "Founder",
-      "health": "Green",
-      "cadence": "Monthly",
-      "next_touch": "2026-11-02",
-      "renewal": "",
-      "opportunity": "Testimonial / referral request"
-    },
-    {
-      "client": "Summit Legal",
-      "contact": "Managing Partner",
-      "health": "Green",
-      "cadence": "At kickoff",
-      "next_touch": "2026-10-29",
-      "renewal": "",
-      "opportunity": "Matter intake extension"
-    }
-  ],
-  "onboarding": [
-    {
-      "client": "Summit Legal",
-      "step": "Kickoff & success criteria",
-      "owner": "Maya",
-      "due": "2026-10-29",
-      "status": "Due next",
-      "blocker": "Awaiting calendar confirmation"
-    },
-    {
-      "client": "Summit Legal",
-      "step": "Access & stakeholder mapping",
-      "owner": "Leah",
-      "due": "2026-10-30",
-      "status": "Not started",
-      "blocker": "Kickoff pending"
-    },
-    {
-      "client": "Summit Legal",
-      "step": "Delivery plan approved",
-      "owner": "Samira",
-      "due": "2026-11-02",
-      "status": "Not started",
-      "blocker": ""
-    },
-    {
-      "client": "Brightline Advisory",
-      "step": "Account setup & access",
-      "owner": "Zoe",
-      "due": "2026-10-27",
-      "status": "Completed",
-      "blocker": ""
-    },
-    {
-      "client": "Brightline Advisory",
-      "step": "Client training & handoff",
-      "owner": "Maya",
-      "due": "2026-11-03",
-      "status": "In progress",
-      "blocker": "Training slot to confirm"
-    },
-    {
-      "client": "Lumen Health",
-      "step": "Discovery and process map",
-      "owner": "Leah",
-      "due": "2026-10-23",
-      "status": "Completed",
-      "blocker": ""
-    },
-    {
-      "client": "Lumen Health",
-      "step": "First delivery / QA",
-      "owner": "Zoe",
-      "due": "2026-10-30",
-      "status": "In progress",
-      "blocker": ""
-    }
-  ],
-  "tasks": [
-    {
-      "id": "T-001",
-      "project_id": "P-101",
-      "task": "Validate migration sample records",
-      "owner": "Samira",
-      "due": "2026-10-29",
-      "status": "In progress",
-      "priority": "High",
-      "completed": ""
-    },
-    {
-      "id": "T-002",
-      "project_id": "P-101",
-      "task": "Client mapping sign-off",
-      "owner": "Samira",
-      "due": "2026-10-30",
-      "status": "Blocked",
-      "priority": "High",
-      "completed": ""
-    },
-    {
-      "id": "T-003",
-      "project_id": "P-101",
-      "task": "Reconcile field exceptions",
-      "owner": "Omar",
-      "due": "2026-10-27",
-      "status": "Blocked",
-      "priority": "High",
-      "completed": ""
-    },
-    {
-      "id": "T-004",
-      "project_id": "P-101",
-      "task": "Audit legacy CRM entities",
-      "owner": "Omar",
-      "due": "2026-10-25",
-      "status": "Done",
-      "priority": "High",
-      "completed": "2026-10-24"
-    },
-    {
-      "id": "T-005",
-      "project_id": "P-101",
-      "task": "Review cutover runbook",
-      "owner": "Samira",
-      "due": "2026-10-30",
-      "status": "Not started",
-      "priority": "Medium",
-      "completed": ""
-    },
-    {
-      "id": "T-006",
-      "project_id": "P-102",
-      "task": "Responsive QA across templates",
-      "owner": "Zoe",
-      "due": "2026-10-29",
-      "status": "In progress",
-      "priority": "High",
-      "completed": ""
-    },
-    {
-      "id": "T-007",
-      "project_id": "P-102",
-      "task": "Client UAT sign-off",
-      "owner": "Daniel",
-      "due": "2026-10-30",
-      "status": "Not started",
-      "priority": "High",
-      "completed": ""
-    },
-    {
-      "id": "T-008",
-      "project_id": "P-102",
-      "task": "Final SEO checks",
-      "owner": "Daniel",
-      "due": "2026-10-28",
-      "status": "In progress",
-      "priority": "Medium",
-      "completed": ""
-    },
-    {
-      "id": "T-009",
-      "project_id": "P-102",
-      "task": "Implement approved visual system",
-      "owner": "Daniel",
-      "due": "2026-10-24",
-      "status": "Done",
-      "priority": "High",
-      "completed": "2026-10-24"
-    },
-    {
-      "id": "T-010",
-      "project_id": "P-102",
-      "task": "Publish content drafts",
-      "owner": "Maya",
-      "due": "2026-10-23",
-      "status": "Done",
-      "priority": "Medium",
-      "completed": "2026-10-22"
-    },
-    {
-      "id": "T-011",
-      "project_id": "P-103",
-      "task": "Map patient scheduling workflow",
-      "owner": "Leah",
-      "due": "2026-10-23",
-      "status": "Done",
-      "priority": "Medium",
-      "completed": "2026-10-23"
-    },
-    {
-      "id": "T-012",
-      "project_id": "P-103",
-      "task": "Build calendar connector",
-      "owner": "Leah",
-      "due": "2026-10-28",
-      "status": "Done",
-      "priority": "High",
-      "completed": "2026-10-27"
-    },
-    {
-      "id": "T-013",
-      "project_id": "P-103",
-      "task": "Run regression tests",
-      "owner": "Zoe",
-      "due": "2026-10-30",
-      "status": "In progress",
-      "priority": "High",
-      "completed": ""
-    },
-    {
-      "id": "T-014",
-      "project_id": "P-103",
-      "task": "Client handover package",
-      "owner": "Maya",
-      "due": "2026-11-04",
-      "status": "Not started",
-      "priority": "Medium",
-      "completed": ""
-    },
-    {
-      "id": "T-015",
-      "project_id": "P-104",
-      "task": "Draft November editorial calendar",
-      "owner": "Maya",
-      "due": "2026-10-27",
-      "status": "Done",
-      "priority": "High",
-      "completed": "2026-10-28"
-    },
-    {
-      "id": "T-016",
-      "project_id": "P-104",
-      "task": "Clarify campaign creative brief",
-      "owner": "Maya",
-      "due": "2026-10-28",
-      "status": "In progress",
-      "priority": "High",
-      "completed": ""
-    },
-    {
-      "id": "T-017",
-      "project_id": "P-104",
-      "task": "Submit first creative set",
-      "owner": "Daniel",
-      "due": "2026-10-30",
-      "status": "Not started",
-      "priority": "Medium",
-      "completed": ""
-    },
-    {
-      "id": "T-018",
-      "project_id": "P-104",
-      "task": "Approve launch dates",
-      "owner": "Maya",
-      "due": "2026-11-02",
-      "status": "Not started",
-      "priority": "Medium",
-      "completed": ""
-    },
-    {
-      "id": "T-019",
-      "project_id": "P-105",
-      "task": "Design pipeline stages",
-      "owner": "Omar",
-      "due": "2026-10-25",
-      "status": "Done",
-      "priority": "High",
-      "completed": "2026-10-25"
-    },
-    {
-      "id": "T-020",
-      "project_id": "P-105",
-      "task": "Obtain stakeholder approvals",
-      "owner": "Omar",
-      "due": "2026-10-28",
-      "status": "Blocked",
-      "priority": "High",
-      "completed": ""
-    },
-    {
-      "id": "T-021",
-      "project_id": "P-105",
-      "task": "Configure opportunity automations",
-      "owner": "Leah",
-      "due": "2026-11-03",
-      "status": "Not started",
-      "priority": "Medium",
-      "completed": ""
-    },
-    {
-      "id": "T-022",
-      "project_id": "P-105",
-      "task": "QA lead routing",
-      "owner": "Zoe",
-      "due": "2026-11-05",
-      "status": "Not started",
-      "priority": "Medium",
-      "completed": ""
-    },
-    {
-      "id": "T-023",
-      "project_id": "P-106",
-      "task": "Set up ticket categories",
-      "owner": "Zoe",
-      "due": "2026-10-24",
-      "status": "Done",
-      "priority": "Medium",
-      "completed": "2026-10-23"
-    },
-    {
-      "id": "T-024",
-      "project_id": "P-106",
-      "task": "Review macros & routing",
-      "owner": "Zoe",
-      "due": "2026-10-29",
-      "status": "In progress",
-      "priority": "Medium",
-      "completed": ""
-    },
-    {
-      "id": "T-025",
-      "project_id": "P-106",
-      "task": "Train client admins",
-      "owner": "Maya",
-      "due": "2026-11-03",
-      "status": "Not started",
-      "priority": "Medium",
-      "completed": ""
-    },
-    {
-      "id": "T-026",
-      "project_id": "P-107",
-      "task": "Approve design mockups",
-      "owner": "Daniel",
-      "due": "2026-10-21",
-      "status": "Done",
-      "priority": "Medium",
-      "completed": "2026-10-21"
-    },
-    {
-      "id": "T-027",
-      "project_id": "P-107",
-      "task": "Deliver final brand pack",
-      "owner": "Daniel",
-      "due": "2026-10-24",
-      "status": "Done",
-      "priority": "High",
-      "completed": "2026-10-23"
-    },
-    {
-      "id": "T-028",
-      "project_id": "P-107",
-      "task": "Confirm client acceptance",
-      "owner": "Maya",
-      "due": "2026-10-25",
-      "status": "Done",
-      "priority": "Medium",
-      "completed": "2026-10-25"
-    },
-    {
-      "id": "T-029",
-      "project_id": "P-108",
-      "task": "Schedule kickoff",
-      "owner": "Maya",
-      "due": "2026-10-29",
-      "status": "Not started",
-      "priority": "High",
-      "completed": ""
-    },
-    {
-      "id": "T-030",
-      "project_id": "P-108",
-      "task": "Request credentials / sample intake",
-      "owner": "Leah",
-      "due": "2026-10-30",
-      "status": "Not started",
-      "priority": "Medium",
-      "completed": ""
-    },
-    {
-      "id": "T-031",
-      "project_id": "P-108",
-      "task": "Define success metrics",
-      "owner": "Samira",
-      "due": "2026-11-02",
-      "status": "Not started",
-      "priority": "Medium",
-      "completed": ""
-    }
-  ]
-};
-const dateLong=s=>s?new Date(s+'T12:00:00').toLocaleDateString('en-GB',{day:'numeric',month:'short'}):'—';
-const safe=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const activeProjects=demo.projects.filter(p=>p.stage==='In progress');
-const nonClosedIssues=demo.issues.filter(i=>i.status!=='Resolved');
-const dueInWeek=demo.tasks.filter(t=>t.status!=='Done'&&t.due>='2026-10-28'&&t.due<='2026-11-03');
-const overdue=demo.tasks.filter(t=>t.status!=='Done'&&t.due<'2026-10-28');
-const doneTasks=demo.tasks.filter(t=>t.status==='Done');
-const onTime=Math.round(doneTasks.filter(t=>t.completed<=t.due).length/doneTasks.length*100);
-const booked=demo.people.reduce((n,p)=>n+p.booked,0);const available=demo.people.reduce((n,p)=>n+p.capacity,0);
-const utilization=Math.round(booked/available*100);
-const healthBadge=h=>`<span class="badge ${h==='At risk'||h==='High'||h==='Red'?'risk':h==='On track'||h==='Delivered'||h==='Green'||h==='Done'||h==='Resolved'||h==='Completed'?'good':h==='Amber'||h==='Medium'||h==='Blocked'||h==='Due next'?'medium':h==='In progress'?'blue':'neutral'}">${safe(h)}</span>`;
-function toast(msg){const e=document.getElementById('toast');e.innerText=msg;e.classList.add('visible');clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>e.classList.remove('visible'),2300)}
-const kpis=[['Active projects',activeProjects.length,`${demo.projects.length} total projects`,'▤',''],['At-risk projects',activeProjects.filter(p=>p.health==='At risk').length,'Prioritize recovery plans','⚑','risk'],['Open escalations',nonClosedIssues.length,'Owner + next update assigned','!','warn'],['Due in 7 days',dueInWeek.length,`${overdue.length} currently overdue`,'◷',''],['On-time completions',onTime+'%',`${doneTasks.length} completed tasks`,'✓','good'],['Team utilization',utilization+'%',`${booked} of ${available}h allocated`,'▥','']];
-document.getElementById('kpis').innerHTML=kpis.map(k=>`<div class="kpi ${k[4]}"><div class="symbol">${k[3]}</div><div class="kicker">${k[0]}</div><div class="val">${k[1]}</div><div class="detail">${k[2]}</div></div>`).join('');
-const progress=p=>`<div class="progress-meta"><span>Completion</span><span>${p.progress}%</span></div><div class="progress-wrap"><div class="progress-fill ${p.health==='At risk'?'risk':''}" style="width:${p.progress}%"></div></div>`;
-document.getElementById('overviewProjects').innerHTML=activeProjects.map(p=>`<tr><td><div class="strong">${safe(p.project)}</div><div class="minor">${safe(p.client)}</div></td><td>${safe(p.owner)}</td><td>${progress(p)}</td><td>${dateLong(p.due)}</td><td>${healthBadge(p.health)}</td></tr>`).join('');
-document.getElementById('attention').innerHTML=nonClosedIssues.map(i=>`<div class="issue" tabindex="0" role="button" data-issue="${i.id}"><div class="issue-dot">${i.severity==='High'?'!':'↗'}</div><div><div class="issue-name">${safe(i.client)}</div><div class="issue-desc">${safe(i.issue)}</div><div class="issue-foot">${safe(i.owner)} · Next update ${dateLong(i.next_update)}</div></div><div class="issue-arrow">›</div></div>`).join('');
-function capacityBars(full=false){return demo.people.map(p=>{const load=Math.round(p.booked/p.capacity*100);return `<div><div class="bar-line"><span><strong>${safe(p.name)}</strong> ${full?`<span class="muted">· ${safe(p.role)}</span>`:''}</span><span>${p.booked}/${p.capacity}h · <b style="color:${load>85?'#bf8436':'#597480'}">${load}%</b></span></div><div class="bar-rail" style="${full?'height:13px':''}"><div class="bar-f ${load>85?'hot':''}" style="width:${load}%"></div></div></div>`}).join('')}
-document.getElementById('capacityBars').innerHTML=capacityBars();document.getElementById('fullCapacityBars').innerHTML=capacityBars(true);document.getElementById('capacityMetrics').innerHTML=`<div class="micro-kpi"><b>${available}h</b><small>Total weekly capacity</small></div><div class="micro-kpi"><b>${booked}h</b><small>Committed capacity</small></div><div class="micro-kpi"><b>${available-booked}h</b><small>Unbooked—not all interchangeable</small></div>`;
-document.getElementById('onboardingMini').innerHTML=[demo.onboarding[0],demo.onboarding[4],demo.onboarding[6]].map((s,j)=>`<div class="stage"><div class="stage-icon">${j+1}</div><div><div class="stage-name">${safe(s.client)}</div><div class="stage-detail">${safe(s.step)}</div></div><div class="stage-status">${healthBadge(s.status)}<div style="margin-top:4px"><small>${dateLong(s.due)}</small></div></div></div>`).join('');
-const next=[['1','Unblock Atlas CRM mapping sign-off','Samira · Today'],['2','Escalate Verde approval dependencies','Omar · Today'],['3','Close Harbor campaign scope questions','Maya · Today'],['4','Finish Northstar QA for Saturday launch','Zoe · Thu 29 Oct']];
-document.getElementById('nextActions').innerHTML=next.map(t=>`<div class="event"><div class="event-icon">${t[0]}</div><div><div class="what">${t[1]}</div><div class="when">${t[2]}</div></div></div>`).join('');
-function renderProjects(){const q=document.getElementById('projectSearch').value.toLowerCase(),h=document.getElementById('healthFilter').value;const filtered=demo.projects.filter(p=>(h==='all'||p.health===h)&&[p.client,p.project,p.owner].join(' ').toLowerCase().includes(q));document.getElementById('projectCount').innerText=`Showing ${filtered.length} of ${demo.projects.length} projects`;document.getElementById('allProjects').innerHTML=filtered.map(p=>`<tr><td><div class="strong">${safe(p.project)}</div><div class="minor">${safe(p.client)} · ${safe(p.id)}</div></td><td>${safe(p.owner)}</td><td>${dateLong(p.due)}</td><td style="min-width:110px">${progress(p)}</td><td>${healthBadge(p.health)}</td><td>${safe(p.next)}</td></tr>`).join('')||'<tr><td colspan="6" class="no-results">No projects match those filters.</td></tr>'}
-renderProjects();
-const taskRank={Blocked:0,'In progress':1,'Not started':2,Done:3};const tasksSorted=[...demo.tasks].filter(t=>t.status!=='Done').sort((a,b)=>taskRank[a.status]-taskRank[b.status]||a.due.localeCompare(b.due));
-const tproj=id=>demo.projects.find(p=>p.id===id)?.client||'';
-document.getElementById('taskQueue').innerHTML=tasksSorted.map(t=>`<tr><td><span class="strong">${safe(t.task)}</span></td><td>${safe(tproj(t.project_id))}</td><td>${safe(t.owner)}</td><td style="color:${t.due<'2026-10-28'?'#ba523f':'inherit'}">${dateLong(t.due)}${t.due<'2026-10-28'?' · overdue':''}</td><td>${healthBadge(t.status)}</td><td>${healthBadge(t.priority)}</td></tr>`).join('');
-document.getElementById('clientTable').innerHTML=demo.clients.map(c=>`<tr><td class="strong">${safe(c.client)}</td><td>${healthBadge(c.health)}</td><td>${safe(c.contact)}</td><td>${safe(c.cadence)}</td><td>${dateLong(c.next_touch)}</td><td>${safe(c.opportunity)}</td></tr>`).join('');
-document.getElementById('issueTable').innerHTML=demo.issues.map(i=>`<tr class="issue-row" data-issue="${i.id}" style="cursor:pointer"><td><div class="strong">${safe(i.client)}</div><div class="minor">${safe(i.issue)}</div></td><td>${healthBadge(i.severity)}</td><td>${safe(i.owner)}</td><td>${healthBadge(i.status)}</td><td>${dateLong(i.next_update)}</td></tr>`).join('');
-document.getElementById('onboardingTable').innerHTML=demo.onboarding.map(s=>`<tr><td class="strong">${safe(s.client)}</td><td>${safe(s.step)}</td><td>${safe(s.owner)}</td><td>${dateLong(s.due)}</td><td>${healthBadge(s.status)}</td><td>${safe(s.blocker||'—')}</td></tr>`).join('');
-const labels={overview:['Overview','Operations command centre','One view of delivery commitments, client confidence and team bandwidth.'],delivery:['Project delivery','Delivery & milestones','Every deadline has an owner, a next step and a visible risk state.'],success:['Client success','Client relationships & escalations','Proactive client communication with clear accountability.'],capacity:['Team capacity','Capacity & workload','Protect delivery quality before accepting more work.'],updates:['Client updates','Client communication studio','Turn project signals into concise, actionable client updates.']};
-function showPage(p){document.querySelectorAll('.page').forEach(el=>el.classList.toggle('active',el.id==='page-'+p));document.querySelectorAll('.nav-btn').forEach(el=>el.classList.toggle('active',el.dataset.page===p));document.getElementById('crumb').innerText=labels[p][0];document.getElementById('pageTitle').innerText=labels[p][1];document.getElementById('pageSub').innerText=labels[p][2];window.scrollTo({top:0,behavior:'smooth'})}
-document.querySelectorAll('[data-page]').forEach(b=>b.addEventListener('click',()=>showPage(b.dataset.page)));document.querySelectorAll('[data-goto]').forEach(b=>b.addEventListener('click',()=>showPage(b.dataset.goto)));document.getElementById('projectSearch').addEventListener('input',renderProjects);document.getElementById('healthFilter').addEventListener('change',renderProjects);document.getElementById('clearFilters').addEventListener('click',()=>{document.getElementById('projectSearch').value='';document.getElementById('healthFilter').value='all';renderProjects()});
-function draft(p){const issue=demo.issues.find(i=>i.client===p.client&&i.status!=='Resolved');const due= dateLong(p.due);return `Subject: ${p.client} — Weekly project update (28 October)\n\nHi team,\n\nHere's a short update on ${p.project.toLowerCase()}.\n\nSTATUS: ${p.health.toUpperCase()} · ${p.progress}% complete\nMILESTONE: Target delivery ${due}\n\nPROGRESS\n• Delivery is ${p.progress}% complete in our sample tracker.\n• Current delivery owner: ${p.owner}.\n\n${issue?`RISK / DEPENDENCY\n• ${issue.issue}.\n• Mitigation: ${issue.action}.\n• Next client update: ${dateLong(issue.next_update)}.\n\n`:'NEXT MILESTONE\n• Work continues against the current delivery plan.\n\n'}NEXT ACTION\n• ${p.next}.\n\nPlease reply in the Upwork conversation if there are any decisions or priority changes we should factor into this week's plan.\n\nBest,\nOperations & Client Success\n\n[Sample message — validate details before use]`}
-document.getElementById('updateSelect').innerHTML=demo.projects.map(p=>`<option value="${p.id}">${safe(p.client)} — ${safe(p.project)}</option>`).join('');
-function updateDraft(){const id=document.getElementById('updateSelect').value,p=demo.projects.find(x=>x.id===id);document.getElementById('updateDraft').innerText=draft(p)}
-document.getElementById('generateUpdate').addEventListener('click',updateDraft);document.getElementById('topUpdate').addEventListener('click',()=>{showPage('updates');updateDraft()});document.getElementById('copyUpdate').addEventListener('click',async()=>{const s=document.getElementById('updateDraft').innerText;try{if(!navigator.clipboard)throw new Error('Clipboard API unavailable');await navigator.clipboard.writeText(s);toast('Sample update copied')}catch(e){const t=document.createElement('textarea');t.value=s;document.body.appendChild(t);t.select();const ok=document.execCommand('copy');t.remove();toast(ok?'Sample update copied':'Select the update text to copy')}});
-function showIssue(id){const i=demo.issues.find(x=>x.id===id);if(!i)return;document.getElementById('modalContent').innerHTML=`<div class="label-line" style="margin:0 0 6px">Escalation ${safe(i.id)} · ${safe(i.severity)} severity</div><h2>${safe(i.client)}</h2><p>${safe(i.issue)}</p><div class="label-line">Accountable owner</div><div class="info-block">${safe(i.owner)} &nbsp;·&nbsp; ${healthBadge(i.status)} &nbsp;·&nbsp; Next client update: ${dateLong(i.next_update)}</div><div class="label-line">Client impact</div><div class="info-block">${safe(i.impact)}</div><div class="label-line">Recovery action</div><div class="info-block">${safe(i.action)}</div><p class="smaller">A real process would also track source links, decisions, client sentiment, and the resolution timestamp.</p><div class="modal-footer"><button class="secondary" onclick="closeModal()">Close</button><button class="primary" id="markReviewed">Mark reviewed (demo)</button></div>`;document.getElementById('overlay').classList.add('visible');document.getElementById('markReviewed').addEventListener('click',()=>{closeModal();toast('Marked reviewed locally · no system changed')})}
-function closeModal(){document.getElementById('overlay').classList.remove('visible')}document.getElementById('closeModal').addEventListener('click',closeModal);document.getElementById('overlay').addEventListener('click',e=>{if(e.target.id==='overlay')closeModal()});document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});document.addEventListener('click',e=>{const target=e.target.closest('[data-issue]');if(target)showIssue(target.dataset.issue)});
-</script></body></html>
+const demo={"as_of":"2026-10-28","projects":[{"id":"P-101","client":"Atlas Fitness","project":"CRM migration & rollout","owner":"Samira","stage":"In progress","health":"At risk","progress":74,"due":"2026-11-03","next":"Confirm data-mapping sign-off","service":"CRM & RevOps","priority":"High"},{"id":"P-102","client":"Northstar Studio","project":"Website relaunch","owner":"Daniel","stage":"In progress","health":"On track","progress":83,"due":"2026-10-31","next":"Complete final QA and UAT","service":"Web delivery","priority":"High"},{"id":"P-103","client":"Lumen Health","project":"Onboarding automation","owner":"Leah","stage":"In progress","health":"On track","progress":62,"due":"2026-11-06","next":"Test calendar integration","service":"Automation","priority":"Medium"},{"id":"P-104","client":"Harbor & Co","project":"Q4 content retainer","owner":"Maya","stage":"In progress","health":"On track","progress":68,"due":"2026-11-02","next":"Align campaign creative brief","service":"Client services","priority":"Medium"},{"id":"P-105","client":"Verde Commerce","project":"Sales pipeline implementation","owner":"Omar","stage":"In progress","health":"At risk","progress":48,"due":"2026-11-09","next":"Escalate outstanding approvals","service":"CRM & RevOps","priority":"High"},{"id":"P-106","client":"Brightline Advisory","project":"Support desk launch","owner":"Zoe","stage":"In progress","health":"On track","progress":57,"due":"2026-11-10","next":"Review initial ticket taxonomy","service":"Service ops","priority":"Medium"},{"id":"P-107","client":"Willow Home","project":"Brand refresh","owner":"Daniel","stage":"Completed","health":"Delivered","progress":100,"due":"2026-10-24","next":"Request testimonial","service":"Brand","priority":"Low"},{"id":"P-108","client":"Summit Legal","project":"Client intake workflow","owner":"Leah","stage":"Planned","health":"Not started","progress":0,"due":"2026-11-17","next":"Schedule kickoff & asset intake","service":"Automation","priority":"Medium"}],"people":[{"name":"Samira","role":"Delivery / Ops","capacity":40,"booked":34,"active":3},{"name":"Daniel","role":"Web & Creative","capacity":35,"booked":29,"active":2},{"name":"Leah","role":"Automation Lead","capacity":35,"booked":28,"active":2},{"name":"Maya","role":"Client Success","capacity":35,"booked":25,"active":3},{"name":"Omar","role":"CRM Integrations","capacity":35,"booked":32,"active":2},{"name":"Zoe","role":"QA / Support Ops","capacity":30,"booked":17,"active":2}],"issues":[{"id":"E-201","client":"Atlas Fitness","issue":"Data-mapping discrepancy before CRM cutover","severity":"High","status":"Open","owner":"Samira","opened":"2026-10-26","next_update":"2026-10-28","action":"Validate 240 sample records; request client sign-off","impact":"Migration cutover at risk"},{"id":"E-202","client":"Verde Commerce","issue":"Two stakeholder approvals outstanding","severity":"High","status":"Open","owner":"Omar","opened":"2026-10-27","next_update":"2026-10-29","action":"Send decision brief with revised milestone options","impact":"Blocks integration sprint"},{"id":"E-203","client":"Harbor & Co","issue":"Campaign brief needs scope clarification","severity":"Medium","status":"In progress","owner":"Maya","opened":"2026-10-27","next_update":"2026-10-28","action":"Host 15-min alignment call; issue revised brief","impact":"Potential rework"},{"id":"E-204","client":"Northstar Studio","issue":"Homepage messaging revision","severity":"Low","status":"Resolved","owner":"Daniel","opened":"2026-10-22","next_update":"","action":"Approved revision delivered","impact":"No active impact"},{"id":"E-205","client":"Lumen Health","issue":"Calendar integration verification","severity":"Medium","status":"Resolved","owner":"Leah","opened":"2026-10-23","next_update":"","action":"Regression tests passed","impact":"No active impact"},{"id":"E-206","client":"Brightline Advisory","issue":"Knowledge base taxonomy feedback","severity":"Low","status":"Resolved","owner":"Zoe","opened":"2026-10-23","next_update":"","action":"Revised taxonomy accepted","impact":"No active impact"}],"clients":[{"client":"Atlas Fitness","contact":"Operations Director","health":"Amber","cadence":"Twice weekly","next_touch":"2026-10-28","renewal":"2027-01-31","opportunity":"Phase-two reporting automation"},{"client":"Northstar Studio","contact":"Founder","health":"Green","cadence":"Weekly","next_touch":"2026-10-30","renewal":"2026-12-31","opportunity":"Post-launch care plan"},{"client":"Lumen Health","contact":"Practice Manager","health":"Green","cadence":"Weekly","next_touch":"2026-10-29","renewal":"2027-02-15","opportunity":"Additional reminder flows"},{"client":"Harbor & Co","contact":"Marketing Director","health":"Amber","cadence":"Weekly","next_touch":"2026-10-28","renewal":"2026-12-15","opportunity":"Content analytics retainer"},{"client":"Verde Commerce","contact":"COO","health":"Amber","cadence":"Twice weekly","next_touch":"2026-10-29","renewal":"2027-01-20","opportunity":"Revenue reporting dashboards"},{"client":"Brightline Advisory","contact":"Head of Services","health":"Green","cadence":"Weekly","next_touch":"2026-10-30","renewal":"2027-02-28","opportunity":"Helpdesk macros & automation"},{"client":"Willow Home","contact":"Founder","health":"Green","cadence":"Monthly","next_touch":"2026-11-02","renewal":"","opportunity":"Testimonial / referral request"},{"client":"Summit Legal","contact":"Managing Partner","health":"Green","cadence":"At kickoff","next_touch":"2026-10-29","renewal":"","opportunity":"Matter intake extension"}],"onboarding":[{"client":"Summit Legal","step":"Kickoff & success criteria","owner":"Maya","due":"2026-10-29","status":"Due next","blocker":"Awaiting calendar confirmation"},{"client":"Summit Legal","step":"Access & stakeholder mapping","owner":"Leah","due":"2026-10-30","status":"Not started","blocker":"Kickoff pending"},{"client":"Summit Legal","step":"Delivery plan approved","owner":"Samira","due":"2026-11-02","status":"Not started","blocker":""},{"client":"Brightline Advisory","step":"Account setup & access","owner":"Zoe","due":"2026-10-27","status":"Completed","blocker":""},{"client":"Brightline Advisory","step":"Client training & handoff","owner":"Maya","due":"2026-11-03","status":"In progress","blocker":"Training slot to confirm"},{"client":"Lumen Health","step":"Discovery and process map","owner":"Leah","due":"2026-10-23","status":"Completed","blocker":""},{"client":"Lumen Health","step":"First delivery / QA","owner":"Zoe","due":"2026-10-30","status":"In progress","blocker":""}],"tasks":[{"id":"T-001","project_id":"P-101","task":"Validate migration sample records","owner":"Samira","due":"2026-10-29","status":"In progress","priority":"High","completed":""},{"id":"T-002","project_id":"P-101","task":"Client mapping sign-off","owner":"Samira","due":"2026-10-30","status":"Blocked","priority":"High","completed":""},{"id":"T-003","project_id":"P-101","task":"Reconcile field exceptions","owner":"Omar","due":"2026-10-27","status":"Blocked","priority":"High","completed":""},{"id":"T-004","project_id":"P-101","task":"Audit legacy CRM entities","owner":"Omar","due":"2026-10-25","status":"Done","priority":"High","completed":"2026-10-24"},{"id":"T-005","project_id":"P-101","task":"Review cutover runbook","owner":"Samira","due":"2026-10-30","status":"Not started","priority":"Medium","completed":""},{"id":"T-006","project_id":"P-102","task":"Responsive QA across templates","owner":"Zoe","due":"2026-10-29","status":"In progress","priority":"High","completed":""},{"id":"T-007","project_id":"P-102","task":"Client UAT sign-off","owner":"Daniel","due":"2026-10-30","status":"Not started","priority":"High","completed":""},{"id":"T-008","project_id":"P-102","task":"Final SEO checks","owner":"Daniel","due":"2026-10-28","status":"In progress","priority":"Medium","completed":""},{"id":"T-009","project_id":"P-102","task":"Implement approved visual system","owner":"Daniel","due":"2026-10-24","status":"Done","priority":"High","completed":"2026-10-24"},{"id":"T-010","project_id":"P-102","task":"Publish content drafts","owner":"Maya","due":"2026-10-23","status":"Done","priority":"Medium","completed":"2026-10-22"},{"id":"T-011","project_id":"P-103","task":"Map patient scheduling workflow","owner":"Leah","due":"2026-10-23","status":"Done","priority":"Medium","completed":"2026-10-23"},{"id":"T-012","project_id":"P-103","task":"Build calendar connector","owner":"Leah","due":"2026-10-28","status":"Done","priority":"High","completed":"2026-10-27"},{"id":"T-013","project_id":"P-103","task":"Run regression tests","owner":"Zoe","due":"2026-10-30","status":"In progress","priority":"High","completed":""},{"id":"T-014","project_id":"P-103","task":"Client handover package","owner":"Maya","due":"2026-11-04","status":"Not started","priority":"Medium","completed":""},{"id":"T-015","project_id":"P-104","task":"Draft November editorial calendar","owner":"Maya","due":"2026-10-27","status":"Done","priority":"High","completed":"2026-10-28"},{"id":"T-016","project_id":"P-104","task":"Clarify campaign creative brief","owner":"Maya","due":"2026-10-28","status":"In progress","priority":"High","completed":""},{"id":"T-017","project_id":"P-104","task":"Submit first creative set","owner":"Daniel","due":"2026-10-30","status":"Not started","priority":"Medium","completed":""},{"id":"T-018","project_id":"P-104","task":"Approve launch dates","owner":"Maya","due":"2026-11-02","status":"Not started","priority":"Medium","completed":""},{"id":"T-019","project_id":"P-105","task":"Design pipeline stages","owner":"Omar","due":"2026-10-25","status":"Done","priority":"High","completed":"2026-10-25"},{"id":"T-020","project_id":"P-105","task":"Obtain stakeholder approvals","owner":"Omar","due":"2026-10-28","status":"Blocked","priority":"High","completed":""},{"id":"T-021","project_id":"P-105","task":"Configure opportunity automations","owner":"Leah","due":"2026-11-03","status":"Not started","priority":"Medium","completed":""},{"id":"T-022","project_id":"P-105","task":"QA lead routing","owner":"Zoe","due":"2026-11-05","status":"Not started","priority":"Medium","completed":""},{"id":"T-023","project_id":"P-106","task":"Set up ticket categories","owner":"Zoe","due":"2026-10-24","status":"Done","priority":"Medium","completed":"2026-10-23"},{"id":"T-024","project_id":"P-106","task":"Review macros & routing","owner":"Zoe","due":"2026-10-29","status":"In progress","priority":"Medium","completed":""},{"id":"T-025","project_id":"P-106","task":"Train client admins","owner":"Maya","due":"2026-11-03","status":"Not started","priority":"Medium","completed":""},{"id":"T-026","project_id":"P-107","task":"Approve design mockups","owner":"Daniel","due":"2026-10-21","status":"Done","priority":"Medium","completed":"2026-10-21"},{"id":"T-027","project_id":"P-107","task":"Deliver final brand pack","owner":"Daniel","due":"2026-10-24","status":"Done","priority":"High","completed":"2026-10-23"},{"id":"T-028","project_id":"P-107","task":"Confirm client acceptance","owner":"Maya","due":"2026-10-25","status":"Done","priority":"Medium","completed":"2026-10-25"},{"id":"T-029","project_id":"P-108","task":"Schedule kickoff","owner":"Maya","due":"2026-10-29","status":"Not started","priority":"High","completed":""},{"id":"T-030","project_id":"P-108","task":"Request credentials / sample intake","owner":"Leah","due":"2026-10-30","status":"Not started","priority":"Medium","completed":""},{"id":"T-031","project_id":"P-108","task":"Define success metrics","owner":"Samira","due":"2026-11-02","status":"Not started","priority":"Medium","completed":""}]};
+const $ = s => document.querySelector(s);
+const esc = s => String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fmt = s => s ? new Date(s+'T12:00:00').toLocaleDateString('en-GB',{day:'numeric',month:'short'}) : '—';
+const status = s => `<span class="status ${/At risk|High|Open|Red|Blocked/.test(s)?'risk':/On track|Delivered|Green|Resolved|Completed|Done/.test(s)?'good':/Amber|Medium|Due next/.test(s)?'warn':/In progress/.test(s)?'info':'neutral'}">${esc(s)}</span>`;
+const active=demo.projects.filter(x=>x.stage==='In progress');
+const opened=demo.issues.filter(x=>x.status!=='Resolved');
+const done=demo.tasks.filter(x=>x.status==='Done');
+const due=demo.tasks.filter(x=>x.status!=='Done' && x.due>='2026-10-28' && x.due<='2026-11-03');
+const booked=demo.people.reduce((a,x)=>a+x.booked,0),available=demo.people.reduce((a,x)=>a+x.capacity,0);
+const onTime=done.length?Math.round(done.filter(x=>x.completed<=x.due).length/done.length*100):0;
+const heat=x=>`<div class="progress-line"><div class="progress-rail"><div class="progress-fill ${x.health==='At risk'?'risk':''}" style="width:${x.progress}%"></div></div><b>${x.progress}%</b></div>`;
+function showPage(name){
+ const p=$('#page-'+name);if(!p)return;
+ document.querySelectorAll('.page').forEach(el=>el.classList.toggle('active',el===p));
+ document.querySelectorAll('[data-page]').forEach(el=>{let on=el.dataset.page===name;el.classList.toggle('active',on);if(on)el.setAttribute('aria-current','page');else el.removeAttribute('aria-current')});
+ $('#breadcrumb').textContent=({overview:'Overview',delivery:'Project delivery',success:'Client success',capacity:'Team capacity',updates:'Client updates'})[name];
+ history.replaceState(null,'','#'+name);
+ window.scrollTo({top:0,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});
+}
+function notify(msg){let t=$('#toast');t.textContent=msg;t.classList.add('visible');clearTimeout(window._notifyTimer);window._notifyTimer=setTimeout(()=>t.classList.remove('visible'),2600)}
+function issueButton(i,kind='full'){
+ const med=i.severity!=='High';
+ return `<button class="attention-item" data-issue="${esc(i.id)}"><span class="attention-marker ${med?'medium':''}">${i.severity==='High'?'!':'·'}</span><span><span class="attention-title">${esc(i.client)}</span><span class="attention-description" style="display:block">${esc(i.issue)}</span><span class="attention-meta" style="display:block">${esc(i.owner)} · ${i.next_update?'Next update '+fmt(i.next_update):'Resolved'}${kind==='full'?' · '+esc(i.status):''}</span></span><span class="chevron" aria-hidden="true">›</span></button>`;
+}
+function renderOverview(){
+ const totals=[
+  [active.length,'Active projects',`${demo.projects.length} tracked across the portfolio`],
+  [active.filter(p=>p.health==='At risk').length,'At-risk workstreams','Require an agreed recovery path','caution'],
+  [opened.length,'Open escalations','Owner and next update assigned','caution'],
+  [Math.round(booked/available*100)+'%','Team utilization',`${booked} of ${available} hours allocated`]
+ ];
+ $('#overviewMetrics').innerHTML=totals.map(x=>`<div class="metric"><div class="metric-value ${x[3]||''}">${x[0]}</div><div class="metric-title">${x[1]}</div><div class="metric-desc">${x[2]}</div></div>`).join('');
+ $('#overviewIssues').innerHTML=opened.map(i=>issueButton(i)).join('');
+ let focus=[['Unblock Atlas migration sign-off','Samira · Today'],['Secure Verde stakeholder approvals','Omar · Today'],['Clarify Harbor campaign scope','Maya · Today'],['Close Northstar final QA','Zoe · 29 Oct']];
+ $('#todayFocus').innerHTML=focus.map((x,n)=>`<div class="focus-row"><div class="focus-number">${String(n+1).padStart(2,'0')}</div><div><div class="focus-title">${x[0]}</div><div class="focus-details">${x[1]}</div></div></div>`).join('');
+ $('#portfolioRows').innerHTML=active.map(p=>`<tr><td class="name-cell"><div class="col-primary">${esc(p.project)}</div><div class="subline">${esc(p.client)}</div></td><td class="owner">${esc(p.owner)}</td><td>${fmt(p.due)}</td><td>${heat(p)}</td><td>${status(p.health)}</td></tr>`).join('');
+ $('#capacityPreview').innerHTML=demo.people.map(p=>{let v=Math.round(p.booked/p.capacity*100);return `<div class="cap-row"><div class="cap-heading"><strong>${esc(p.name)}</strong><span>${p.booked}/${p.capacity}h · ${v}%</span></div><div class="load-rail"><div class="load-fill ${v>85?'hot':''}" style="width:${v}%"></div></div></div>`}).join('');
+ $('#touchPreview').innerHTML=[...demo.clients].sort((a,b)=>a.next_touch.localeCompare(b.next_touch)).slice(0,5).map(c=>`<div class="touch-item"><div><div class="touch-title">${esc(c.client)}</div><div class="touch-sub">${esc(c.contact)} · ${esc(c.cadence)}</div></div><div class="touch-date">${fmt(c.next_touch)}</div></div>`).join('');
+}
+function renderProjects(){
+ let term=$('#projectSearch').value.trim().toLowerCase(),state=$('#healthFilter').value;
+ const rows=demo.projects.filter(p=>(state==='all'||p.health===state)&&[p.project,p.client,p.owner,p.service].join(' ').toLowerCase().includes(term));
+ $('#projectCount').textContent=`Showing ${rows.length} of ${demo.projects.length}`;
+ $('#projectRows').innerHTML=rows.map(p=>`<tr><td class="name-cell"><div class="col-primary">${esc(p.project)}</div><div class="subline">${esc(p.client)} · ${esc(p.id)}</div></td><td>${esc(p.owner)}</td><td>${fmt(p.due)}</td><td>${heat(p)}</td><td>${status(p.health)}</td><td>${esc(p.next)}</td></tr>`).join('')||'<tr><td class="empty" colspan="6">No projects match the current filters. Clear them to see all workstreams.</td></tr>';
+}
+function renderTasks(){let r={Blocked:0,'In progress':1,'Not started':2,Done:3};let t=demo.tasks.filter(x=>x.status!=='Done').sort((a,b)=>r[a.status]-r[b.status]||a.due.localeCompare(b.due));
+ $('#taskRows').innerHTML=t.map(t=>{let p=demo.projects.find(x=>x.id===t.project_id);return `<tr><td class="name-cell"><div class="col-primary">${esc(t.task)}</div><div class="subline">${esc(p?.client||'')} · ${esc(t.id)}</div></td><td>${esc(t.owner)}</td><td>${fmt(t.due)}</td><td>${status(t.priority)}</td><td>${status(t.status)}</td></tr>`}).join('');}
+function renderSuccess(){
+ $('#openIssueCount').textContent=`${opened.length} currently open`;
+ $('#issuesRegister').innerHTML=[...demo.issues].sort((a,b)=>a.status==='Resolved'?1:b.status==='Resolved'?-1:0).map(i=>issueButton(i)).join('');
+ $('#clientsRows').innerHTML=demo.clients.map(c=>`<tr><td><div class="col-primary">${esc(c.client)}</div><div class="subline">${esc(c.contact)}</div></td><td>${status(c.health)}</td><td>${fmt(c.next_touch)}</td><td>${esc(c.cadence)}</td></tr>`).join('');
+ $('#onboardingRows').innerHTML=demo.onboarding.map(o=>`<div class="onboard-row"><div><div class="col-primary">${esc(o.step)}</div><div class="subline">${esc(o.client)} · ${esc(o.owner)} · ${fmt(o.due)}</div>${o.blocker?`<div class="subline" style="color:#96651c">Dependency: ${esc(o.blocker)}</div>`:''}</div><div>${status(o.status)}</div></div>`).join('');
+}
+function renderCapacity(){
+ $('#capacityRows').innerHTML=demo.people.map(p=>{let rate=Math.round(p.booked/p.capacity*100),signal=rate>85?'Review allocations':rate>=75?'Near threshold':'Available';let cls=rate>85?'risk':rate>=75?'warn':'good';let initials=p.name.slice(0,2).toUpperCase();return `<tr><td><div class="capacity-name"><span class="initial">${initials}</span><span><span class="col-primary">${esc(p.name)}</span><span class="subline" style="display:block">${esc(p.role)}</span></span></div></td><td>${p.active}</td><td><div class="capacity-track"><div class="cap-heading"><strong>${p.booked}h / ${p.capacity}h</strong><span>${p.capacity-p.booked}h open</span></div><div class="load-rail"><div class="load-fill ${rate>85?'hot':''}" style="width:${rate}%"></div></div></div></td><td class="capacity-signal">${rate}%</td><td>${status(signal==='Review allocations'?'At risk':signal==='Near threshold'?'Medium':'On track')}</td></tr>`}).join('');}
+function makeDraft(p){const issue=demo.issues.find(i=>i.client===p.client&&i.status!=='Resolved');const completed=demo.tasks.filter(t=>t.project_id===p.id&&t.status==='Done').slice(-2).map(t=>'• '+t.task).join('\n')||'No completed milestones have been recorded yet.';return `Subject: ${p.client} | Weekly project update (28 October)\n\nHi team,\n\nHere is a concise update on ${p.project.toLowerCase()}.\n\nCURRENT STATUS\n${p.health} · ${p.progress}% complete\nTarget milestone: ${fmt(p.due)}\nDelivery owner: ${p.owner}\n\nWORK COMPLETED\n${completed}\n\n${issue?`RISK AND RESPONSE\n${issue.issue}.\nMitigation: ${issue.action}.\nNext client update: ${fmt(issue.next_update)}.\n\n`:''}NEXT ACTION\n${p.next}.\n\nPlease share any pending decisions or changes to priorities through the agreed client channel.\n\nKind regards,\nOperations & Client Success\n\n[Illustrative draft | Verify facts before sending]`.replaceAll('\\n','\n')}
+function updateDraft(){const p=demo.projects.find(x=>x.id===$('#updateSelect').value);if(p)$('#updateDraft').textContent=makeDraft(p)}
+function initUpdates(){
+ $('#updateSelect').innerHTML=demo.projects.map(p=>`<option value="${p.id}">${esc(p.client)} · ${esc(p.project)}</option>`).join('');updateDraft();
+}
+function openIssue(id){const i=demo.issues.find(x=>x.id===id);if(!i)return;
+ $('#issueDialogTag').textContent=`${i.id} · ${i.severity} severity · ${i.status}`;
+ $('#issueDialogTitle').textContent=i.client;
+ $('#issueDialogBody').innerHTML=`<div class="line"><b>Issue</b><p>${esc(i.issue)}</p></div><div class="line"><b>Client impact</b><p>${esc(i.impact)}</p></div><div class="line"><b>Accountable owner</b><p>${esc(i.owner)}</p></div><div class="line"><b>Recovery plan</b><p>${esc(i.action)}</p></div><div class="line"><b>Next client update</b><p>${fmt(i.next_update)}${!i.next_update?' · No update scheduled; issue closed.':''}</p></div>`;
+ $('#issueDialog').showModal();
+}
+function attach(){
+ document.querySelectorAll('[data-page]').forEach(b=>b.addEventListener('click',()=>showPage(b.dataset.page)));
+ document.querySelectorAll('[data-goto]').forEach(b=>b.addEventListener('click',()=>showPage(b.dataset.goto)));
+ document.addEventListener('click',e=>{let el=e.target.closest('[data-issue]');if(el)openIssue(el.dataset.issue)});
+ $('#projectSearch').addEventListener('input',renderProjects);$('#healthFilter').addEventListener('change',renderProjects);
+ $('#resetFilters').addEventListener('click',()=>{$('#projectSearch').value='';$('#healthFilter').value='all';renderProjects()});
+ $('#topUpdate').addEventListener('click',()=>{showPage('updates');updateDraft()});
+ $('#generateUpdate').addEventListener('click',()=>{updateDraft();notify('Draft refreshed from sample data')});
+ $('#updateSelect').addEventListener('change',updateDraft);
+ $('#copyUpdate').addEventListener('click',async()=>{const txt=$('#updateDraft').textContent;try{if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(txt)}else{let t=document.createElement('textarea');t.value=txt;document.body.appendChild(t);t.select();let ok=document.execCommand('copy');t.remove();if(!ok)throw new Error('Copy not permitted')}notify('Draft copied. Review before sending.')}catch(e){notify('Clipboard unavailable. Select the draft text to copy.')}});
+ $('#closeDialog').addEventListener('click',()=>$('#issueDialog').close());$('#dismissDialog').addEventListener('click',()=>$('#issueDialog').close());
+ $('#reviewIssue').addEventListener('click',()=>{$('#issueDialog').close();notify('Reviewed locally. No client record changed.')});
+}
+renderOverview();renderProjects();renderTasks();renderSuccess();renderCapacity();initUpdates();attach();
+const target=location.hash.substring(1);if(['overview','delivery','success','capacity','updates'].includes(target))showPage(target);
+</script>
+</body></html>
